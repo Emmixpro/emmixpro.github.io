@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Emmanuel's Tech World — Contact Us</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <style>
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .contact-info-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+    
+    .contact-form {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #1f2937;
+    }
+    
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f8fafc;
+      transition: transform 0.2s;
+    }
+    
+    .contact-method:hover {
+      transform: translateY(-2px);
+      background: #f1f5f9;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: white;
+    }
+    
+    .contact-details h4 {
+      margin: 0 0 5px 0;
+      color: #1f2937;
+    }
+    
+    .contact-details p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .quick-link {
+      padding: 15px;
+      background: #f0f9ff;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      color: #0369a1;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .quick-link:hover {
+      background: #e0f2fe;
+      transform: translateY(-2px);
+    }
+    
+    .faq-section {
+      margin-top: 40px;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 20px 0;
+    }
+    
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #1f2937;
+    }
+    
+    .faq-answer {
+      margin-top: 10px;
+      color: #6b7280;
+      display: none;
+    }
+    
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+    
+    .hours-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .map-placeholder {
+      height: 200px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      margin-top: 20px;
+    }
+    
+    .whatsapp-icon {
+      background-color: #25D366;
+    }
+    
+    .telegram-icon {
+      background-color: #0088cc;
+    }
+    
+    .email-icon {
+      background-color: #EA4335;
+    }
+    
+    .phone-icon {
+      background-color: #10b981;
+    }
+    
+    .location-icon {
+      background-color: #8b5cf6;
+    }
+    
+    .success-message {
+      background: #d1fae5;
+      color: #065f46;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body class="page-contact">
+  <div class="site">
+
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+        <div class="brand-text">
+          <div class="brand-title">Contact Us</div>
+          <div class="brand-sub">Get in touch for courses, support, and partnerships</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Main">
+        <a href="index.html" class="nav-link">Home</a>       
+        <a href="about.html" class="nav-link">About</a>
+        <button class="btn-cta" onclick="window.open('courses.html','_blank')">Full Courses</button>
+      </nav>
+    </header>
+
+    <main class="contact-container">
+      <section class="hero" style="grid-template-columns:1fr; padding:20px; text-align:center;">
+        <div class="hero-left">
+          <h1 class="hero-title">Get in Touch</h1>
+          <p class="hero-sub">Have questions about courses, schedules, or partnerships? We're here to help. Reach out via any method below.</p>
+        </div>
+      </section>
+
+      <div class="contact-grid">
+        <!-- Left Column: Contact Information -->
+        <div class="contact-column">
+          <div class="contact-info-card">
+            <h2 style="margin-top:0; margin-bottom:25px; color:#1f2937;">Contact Information</h2>
+            
+            <div class="contact-method">
+              <div class="contact-icon whatsapp-icon">
+                <span>✆</span>
+              </div>
+              <div class="contact-details">
+                <h4>WhatsApp</h4>
+                <p>Fastest response time (usually within minutes)</p>
+                <a href="#" class="btn-neon" style="margin-top:10px; display:inline-block; background-color:#25D366; font-weight:bold;" target="_blank">Message on WhatsApp</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon telegram-icon">
+                <span>✈</span>
+              </div>
+              <div class="contact-details">
+                <h4>Telegram</h4>
+                <p>Join our channel for updates and discussions</p>
+                <a href="#" class="btn-ghost" style="margin-top:10px; display:inline-block; background-color:#0088cc; color:white; font-weight:bold; border-color:#0088cc;" target="_blank">Join Telegram</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon email-icon">
+                <span>@</span>
+              </div>
+              <div class="contact-details">
+                <h4>Email</h4>
+                <p>For detailed inquiries and documentation</p>
+                <a href="mailto:info@emmanuelstechworld@gmail.com" style="color:#EA4335; font-weight:bold; text-decoration:none;">info@emmanuelstechworld@gmail.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon phone-icon">
+                <span>☎</span>
+              </div>
+              <div class="contact-details">
+                <h4>Phone</h4>
+                <p>Available during business hours</p>
+                <a href="tel:+2349114614928" style="color:#10b981; font-weight:bold; text-decoration:none;">+2349114614928</a>
+              </div>
+            </div>
+            
+            <div class="contact-method">
+              <div class="contact-icon location-icon">
+                <span>📍</span>
+              </div>
+              <div class="contact-details">
+                <h4>Location</h4>
+                <p>Online-first with physical classes on request</p>
+                <p style="color:#6b7280; margin-top:5px;">Lagos, Nigeria (Main Office)</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-info-card">
+            <h3 style="margin-top:0; margin-bottom:20px;">Quick Links</h3>
+            <div class="quick-links">
+              <a href="courses.html" class="quick-link">Browse All Courses</a>
+              <a href="courses.html#faq" class="quick-link">Course FAQs</a>
+              <a href="#" class="quick-link">Payment Options</a>
+              <a href="#" class="quick-link">Schedule & Timetable</a>
+            </div>
+          </div>
+          
+          <div class="contact-info-card">
+            <h3 style="margin-top:0; margin-bottom:20px;">Business Hours</h3>
+            <ul class="hours-list">
+              <li><span>Monday - Friday</span> <strong>9:00 AM - 6:00 PM</strong></li>
+              <li><span>Saturday</span> <strong>10:00 AM - 4:00 PM</strong></li>
+              <li><span>Sunday</span> <strong>Emergency Support Only</strong></li>
+            </ul>
+            <p style="color:#6b7280; font-size:14px; margin-top:15px;"><strong>Note:</strong> WhatsApp support available 24/7 for urgent inquiries.</p>
+          </div>
+        </div>
+
+        <!-- Right Column: Contact Form -->
+        <div class="contact-column">
+          <div class="contact-form">
+            <h2 style="margin-top:0; margin-bottom:25px; color:#1f2937;">Send Us a Message</h2>
+            
+            <form id="contactForm">
+              <div class="form-group">
+                <label class="form-label" for="name">Full Name *</label>
+                <input type="text" id="name" class="form-input" placeholder="Enter your full name" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address *</label>
+                <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="subject">Subject *</label>
+                <select id="subject" class="form-input" required>
+                  <option value="">Select a subject</option>
+                  <option value="course-info">Course Information</option>
+                  <option value="pricing">Pricing & Payment</option>
+                  <option value="schedule">Schedule & Timing</option>
+                  <option value="technical">Technical Support</option>
+                  <option value="partnership">Partnership Inquiry</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="message">Your Message *</label>
+                <textarea id="message" class="form-textarea" placeholder="Tell us about your inquiry in detail..." required></textarea>
+              </div>
+              
+              <button type="submit" class="btn-cta" style="width:100%; padding:15px; font-size:16px;">
+                Send Message
+              </button>
+            </form>
+            
+            <div id="successMessage" class="success-message">
+              ✓ Your message has been sent successfully! We'll get back to you within 24 hours.
+            </div>
+          </div>
+          
+          <div class="contact-info-card" style="margin-top:30px;">
+            <h3 style="margin-top:0; margin-bottom:20px;">Response Promise</h3>
+            <div style="background:#f0f9ff; padding:20px; border-radius:8px;">
+              <p style="margin:0 0 15px 0; color:#0369a1; font-weight:600;">🚀 We pride ourselves on fast response times:</p>
+              <ul style="margin:0; padding-left:20px; color:#4b5563;">
+                <li><strong>WhatsApp:</strong> Within 30 minutes during business hours</li>
+                <li><strong>Email:</strong> Within 24 hours</li>
+                <li><strong>Form submissions:</strong> Within 24 hours</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="map-placeholder">
+            <div style="text-align:center;">
+              <span style="font-size:40px; display:block; margin-bottom:10px;">📍</span>
+              <p>Physical location available<br>for in-person classes on request</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="faq-section">
+        <h2 style="text-align:center; margin-bottom:30px;">Frequently Asked Questions</h2>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              How quickly will I get a response?
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              WhatsApp messages get the fastest response (usually within 30 minutes during business hours). Email and form submissions are answered within 24 hours.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              What payment methods do you accept?
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              We accept bank transfers, mobile payments (like Opay, Palmpay), and online payments. Specific options will be provided when you enroll.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Can I schedule a one-on-one consultation?
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              Yes! You can request a free 15-minute consultation via WhatsApp to discuss which course is right for you.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Do you offer discounts for multiple courses?
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              We offer bundle discounts for students enrolling in multiple courses. Contact us for current bundle pricing.
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question">
+              Are physical classes available in my location?
+              <span>+</span>
+            </div>
+            <div class="faq-answer">
+              We're primarily online, but we arrange physical classes when there's enough demand in an area. Contact us to check availability in your location.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+      <strong>Emmanuel's Tech World</strong>
+
+      <div class="small" style="margin-top:8px">© 2015–2025 Emmanuel O.B.I — Emmanuel</div>
+      <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Form Submission Handler
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // In a real application, you would send this data to a server
+      // For now, we'll just show a success message
+      
+      // Show success message
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+      
+      // Reset form
+      this.reset();
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+      
+      // Log to console (for demo)
+      console.log('Contact Form Submitted:', { name, email, subject, message });
+    });
+    
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        faqItem.classList.toggle('open');
+        
+        // Toggle plus/minus icon
+        const icon = question.querySelector('span');
+        icon.textContent = faqItem.classList.contains('open') ? '−' : '+';
+      });
+    });
+    
+    // Pre-fill subject if coming from a specific page
+    const urlParams = new URLSearchParams(window.location.search);
+    const inquiryType = urlParams.get('inquiry');
+    if (inquiryType) {
+      const subjectSelect = document.getElementById('subject');
+      const option = Array.from(subjectSelect.options).find(opt => opt.value === inquiryType);
+      if (option) {
+        subjectSelect.value = inquiryType;
+      }
+    }
+  </script>
+</body>
+</html>

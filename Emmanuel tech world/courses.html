@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Emmanuel's Tech World — All Courses</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <style>
+    .search-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    .search-bar {
+      width: 100%;
+      padding: 14px 20px;
+      border: 2px solid #3b82f6;
+      border-radius: 12px;
+      font-size: 16px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .search-bar:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+    }
+    
+    .search-bar::placeholder {
+      color: #6b7280;
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #6b7280;
+      font-style: italic;
+      display: none;
+    }
+    
+    .course-count {
+      text-align: center;
+      color: #6b7280;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="page-courses">
+  <div class="site">
+
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+        <div class="brand-text">
+          <div class="brand-title">All Courses</div>
+          <div class="brand-sub">Browse, search, and launch your learning journey</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Main">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="courses.html" class="nav-link" aria-current="page">Courses</a>
+       
+        <button class="btn-cta" onclick="window.open('contact.html','_blank')">Contact</button>
+      </nav>
+    </header>
+
+    <main style="margin-top:22px">
+      <section class="hero" style="grid-template-columns:1fr; padding:28px;">
+        <div class="hero-left">
+          <h1 class="hero-title">Browse All Courses</h1>
+          <p class="hero-sub">Find the perfect course to level up your tech skills. Search by name or browse all categories.</p>
+          
+          <div class="search-container">
+            <input 
+              type="text" 
+              id="course-search" 
+              class="search-bar" 
+              placeholder="Search for a course (e.g., Python, Web Design, AI...)"
+              aria-label="Search courses"
+            >
+            <div class="course-count" id="course-count">Showing <span id="visible-count">0</span> of <span id="total-count">0</span> courses</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="courses">
+        <div id="no-results" class="no-results">
+          <h3>No courses found</h3>
+          <p>Try searching with different keywords</p>
+        </div>
+        
+        <div class="courses-grid" id="courses-container">
+          <!-- Courses will be dynamically filtered but rendered initially -->
+          
+          <!-- 1. Blockchain -->
+          <article class="course-card" data-course-name="Blockchain Technology">
+            <img src="images/blockchain.jpg" alt="Blockchain Technology">
+            <div class="course-title">Blockchain Technology</div>
+            <div class="course-desc">Distributed ledgers, smart contracts and dApp development with Solidity and Web3.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="Blockchain Development.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 2. Digital Marketing -->
+          <article class="course-card" data-course-name="Digital Marketing">
+            <img src="images/digital marketing.avif" alt="Digital Marketing">
+            <div class="course-title">Digital Marketing</div>
+            <div class="course-desc">SEO, ads, content strategy and analytics with real campaigns and tracking setups.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="digital-marketing.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 3. VR/AR Development -->
+          <article class="course-card" data-course-name="VR AR Development">
+            <img src="images/VIRTUAL.avif" alt="VR/AR Development">
+            <div class="course-title">VR/AR Development</div>
+            <div class="course-desc">Unity XR toolkit and AR toolkits to build immersive prototypes for mobile and headsets.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="VR_AR Development.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 4. Video Editing -->
+          <article class="course-card" data-course-name="Video Editing">
+            <img src="images/VIDEO EDITING.avif" alt="Video Editing">
+            <div class="course-title">Video Editing & Motion Graphics</div>
+            <div class="course-desc">Premiere & After Effects workflows, color grading and motion design for social and portfolio work.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="Video Editing.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 5. UI/UX Design -->
+          <article class="course-card" data-course-name="UI UX Design">
+            <img src="images/ui-ux.avif" alt="UI/UX Design">
+            <div class="course-title">UI/UX Design</div>
+            <div class="course-desc">Master user-centered design - create intuitive, beautiful digital experiences that solve real problems.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="ui-ux.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 6. Cloud DevOps -->
+          <article class="course-card" data-course-name="Cloud DevOps">
+            <img src="images/cloud.avif" alt="Cloud DevOps">
+            <div class="course-title">Cloud DevOps Engineering</div>
+            <div class="course-desc">Containers, IaC, Kubernetes, CI/CD and cloud deployments with practical labs.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="Cloud DevOps.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 7. Game Development -->
+          <article class="course-card" data-course-name="Game Development">
+            <img src="images/game dv.avif" alt="Game Development">
+            <div class="course-title">Game Development</div>
+            <div class="course-desc">Unity & Unreal basics, gameplay programming and asset pipeline to ship playable prototypes.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="game-development.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 8. Python Programming -->
+          <article class="course-card" data-course-name="Python Programming">
+            <img src="images/python.avif" alt="Python Programming">
+            <div class="course-title">Python Programming</div>
+            <div class="course-desc">Master versatile programming - from automation to web development and data science.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="python-programming.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 9. Cybersecurity -->
+          <article class="course-card" data-course-name="Cybersecurity">
+            <img src="images/cybersecurity.avif" alt="Cybersecurity">
+            <div class="course-title">Cybersecurity</div>
+            <div class="course-desc">Learn security fundamentals, threat analysis, and protection strategies for modern systems.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="cybersecurity.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 10. Ethical Hacking -->
+          <article class="course-card" data-course-name="Ethical Hacking">
+            <img src="images/ethical hacking.avif" alt="Ethical Hacking">
+            <div class="course-title">Ethical Hacking & Pen Testing</div>
+            <div class="course-desc">Hands-on penetration testing, vulnerability assessment, and security auditing.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="Ethical Hacking.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 11. Data Analysis -->
+          <article class="course-card" data-course-name="Data Analysis">
+            <img src="images/data analsis.avif" alt="Data Analysis">
+            <div class="course-title">Data Analysis</div>
+            <div class="course-desc">Transform raw data into insights using statistical analysis, visualization, and reporting tools.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="data-analysis.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 12. Database Administration -->
+          <article class="course-card" data-course-name="Database Administration">
+            <img src="images/data base.avif" alt="Database Administration">
+            <div class="course-title">Database Administration</div>
+            <div class="course-desc">SQL & NoSQL database management, optimization, backup strategies, and security.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="Database Administration.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 13. Web Development -->
+          <article class="course-card" data-course-name="Web Development">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1400&q=80" alt="Web Development">
+            <div class="course-title">Web Development</div>
+            <div class="course-desc">Full-stack development with modern frameworks, responsive design, and deployment.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="web-development.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 14. HTML & CSS -->
+          <article class="course-card" data-course-name="HTML CSS">
+            <img src="images/html css.avif" alt="HTML & CSS">
+            <div class="course-title">HTML & CSS Fundamentals</div>
+            <div class="course-desc">Build beautiful, responsive websites from scratch with HTML5 and CSS3.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="html-css.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 15. JavaScript -->
+          <article class="course-card" data-course-name="JavaScript">
+            <img src="images/java script.avif" alt="JavaScript">
+            <div class="course-title">JavaScript Programming</div>
+            <div class="course-desc">Master interactive web development with vanilla JS and modern frameworks.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="javascript.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 16. Machine Learning -->
+          <article class="course-card" data-course-name="Machine Learning">
+            <img src="images/machine learn.avif" alt="Machine Learning">
+            <div class="course-title">Machine Learning</div>
+            <div class="course-desc">Implement AI algorithms, neural networks, and predictive models with Python.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="machine-learning.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 17. Mobile Development -->
+          <article class="course-card" data-course-name="Mobile Development">
+            <img src="images/mobile app.avif" alt="Mobile Development">
+            <div class="course-title">Mobile App Development</div>
+            <div class="course-desc">Build native and cross-platform mobile apps for iOS and Android.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="mobile-dev.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 18. Robotics -->
+          <article class="course-card" data-course-name="Robotics">
+            <img src="images/robotics.jpg" alt="Robotics">
+            <div class="course-title">Robotics & IoT</div>
+            <div class="course-desc">Design, build, and program robots and IoT devices with sensors and microcontrollers.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="robotics.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 19. SQL Database -->
+          <article class="course-card" data-course-name="SQL Database">
+            <img src="images/data base.avif" alt="SQL Database">
+            <div class="course-title">SQL Database Design</div>
+            <div class="course-desc">Master relational database design, queries, optimization, and administration.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="sql-database.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+          <!-- 20. Graphic Design -->
+          <article class="course-card" data-course-name="Graphic Design">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1400&q=80" alt="Graphic Design">
+            <div class="course-title">Graphic Design</div>
+            <div class="course-desc">Create stunning visual content with design principles, typography, and color theory.</div>
+            <div class="course-actions">
+              <a class="btn-neon" href="graphic-design.html" target="_blank" rel="noopener">Open</a>
+              <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+      <strong>Emmanuel's Tech World</strong>
+
+      <div class="small" style="margin-top:8px">© 2015–2025 Emmanuel O.B.I — Emmanuel</div>
+      <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Course Search Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('course-search');
+      const courseCards = document.querySelectorAll('.course-card');
+      const noResults = document.getElementById('no-results');
+      const visibleCount = document.getElementById('visible-count');
+      const totalCount = document.getElementById('total-count');
+      const coursesContainer = document.getElementById('courses-container');
+      
+      // Set total count
+      totalCount.textContent = courseCards.length;
+      visibleCount.textContent = courseCards.length;
+      
+      // Search functionality
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        let visibleCards = 0;
+        
+        courseCards.forEach(card => {
+          const courseName = card.getAttribute('data-course-name').toLowerCase();
+          const courseTitle = card.querySelector('.course-title').textContent.toLowerCase();
+          const courseDesc = card.querySelector('.course-desc').textContent.toLowerCase();
+          
+          if (courseName.includes(searchTerm) || 
+              courseTitle.includes(searchTerm) || 
+              courseDesc.includes(searchTerm) ||
+              searchTerm === '') {
+            card.style.display = 'block';
+            visibleCards++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        
+        // Update counter
+        visibleCount.textContent = visibleCards;
+        
+        // Show/hide no results message
+        if (visibleCards === 0 && searchTerm !== '') {
+          noResults.style.display = 'block';
+          coursesContainer.style.display = 'none';
+        } else {
+          noResults.style.display = 'none';
+          coursesContainer.style.display = 'grid';
+        }
+        
+        // Add animation for appearing cards
+        document.querySelectorAll('.course-card[style*="display: block"]').forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.05}s`;
+          card.classList.add('appear');
+        });
+      });
+      
+      // Clear search on Escape key
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          this.value = '';
+          this.dispatchEvent(new Event('input'));
+        }
+      });
+      
+      // Add CSS for animation
+      const style = document.createElement('style');
+      style.textContent = `
+        .course-card {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .course-card.appear {
+          animation: fadeInUp 0.4s ease forwards;
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

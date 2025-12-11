@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Cybersecurity — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .alternative-ctas {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .alternative-ctas .btn-ghost {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .security-layers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .layer-card {
+      flex: 1;
+      min-width: 200px;
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .layer-card h4 {
+      margin: 15px 0 10px;
+      color: var(--accent);
+    }
+    .layer-icon {
+      font-size: 2.5em;
+      color: var(--neon);
+    }
+    
+    .tools-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .tool-card {
+      flex: 1;
+      min-width: 150px;
+      background: var(--panel);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .tool-icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .kali { color: #557CF2; }
+    .wireshark { color: #1679B9; }
+    .metasploit { color: #E62C2C; }
+    .nmap { color: #00AFF0; }
+    .burp { color: #FF6633; }
+    .nessus { color: #00A859; }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">Cybersecurity</h1>
+    <p class="hero-sub">Protect systems, networks, and data from digital attacks. Master ethical hacking and security defense strategies.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Intermediate to Advanced</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">12 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦45,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">4 Security Assessments</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Cybersecurity%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20Cybersecurity%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20Cybersecurity%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20Cybersecurity%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/premium_photo-1701179596614-9c64f50cda76.avif" alt="Cybersecurity">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn Cybersecurity?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🛡️ Critical Demand</h4>
+        <p>Cybersecurity professionals are in massive demand globally with 0% unemployment rate</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 High Earning Potential</h4>
+        <p>Cybersecurity experts command premium salaries due to specialized skills and high responsibility</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🚀 Career Growth</h4>
+        <p>Rapid advancement opportunities with continuous learning and certification paths</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🌍 Global Opportunities</h4>
+        <p>Work remotely for international companies or protect critical national infrastructure</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Security Domains Covered</h2>
+    <div class="security-layers">
+      <div class="layer-card">
+        <div class="layer-icon">🔍</div>
+        <h4>Network Security</h4>
+        <p>Protect network infrastructure and prevent unauthorized access</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-icon">💻</div>
+        <h4>Application Security</h4>
+        <p>Secure software applications and prevent vulnerabilities</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-icon">👤</div>
+        <h4>Identity & Access</h4>
+        <p>Manage user identities and control access to systems</p>
+      </div>
+      <div class="layer-card">
+        <div class="layer-icon">🛡️</div>
+        <h4>Threat Intelligence</h4>
+        <p>Analyze and respond to emerging security threats</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>Master the complete cybersecurity lifecycle from threat assessment to incident response. Learn ethical hacking techniques, security tools, and defense strategies to protect organizations from cyber attacks. Build practical skills through hands-on labs and real-world security assessments.</p>
+        
+        <div class="tools-section">
+          <h3>Security Tools & Technologies</h3>
+          <div class="tools-showcase">
+            <div class="tool-card">
+              <div class="tool-icon kali"><i class="fas fa-shield-alt"></i></div>
+              <h4>Kali Linux</h4>
+              <p>Penetration testing platform</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon wireshark"><i class="fas fa-network-wired"></i></div>
+              <h4>Wireshark</h4>
+              <p>Network protocol analysis</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon metasploit"><i class="fas fa-bug"></i></div>
+              <h4>Metasploit</h4>
+              <p>Vulnerability exploitation</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon nmap"><i class="fas fa-search"></i></div>
+              <h4>Nmap</h4>
+              <p>Network discovery & scanning</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon burp"><i class="fas fa-globe"></i></div>
+              <h4>Burp Suite</h4>
+              <p>Web application security</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Projects You'll Complete</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>🛡️ Network Security Audit</h4>
+            <p>Conduct comprehensive network vulnerability assessment</p>
+          </div>
+          <div class="project-item">
+            <h4>🌐 Web App Penetration Test</h4>
+            <p>Identify and exploit web application vulnerabilities</p>
+          </div>
+          <div class="project-item">
+            <h4>🔒 Incident Response Plan</h4>
+            <p>Develop and implement security incident response procedures</p>
+          </div>
+          <div class="project-item">
+            <h4>📊 Security Assessment Report</h4>
+            <p>Create professional security assessment documentation</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>IT professionals</li>
+            <li>Network administrators</li>
+            <li>System administrators</li>
+            <li>Career switchers</li>
+            <li>Security enthusiasts</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>Basic networking knowledge</li>
+            <li>Linux command line basics</li>
+            <li>Understanding of IT systems</li>
+            <li>Problem-solving mindset</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>Security Analyst</li>
+            <li>Penetration Tester</li>
+            <li>Security Engineer</li>
+            <li>Incident Responder</li>
+            <li>Security Consultant</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1-3</div>
+        <h4>Security Foundations & Networking</h4>
+        <ul>
+          <li>Cybersecurity concepts & principles</li>
+          <li>Network protocols & security</li>
+          <li>Linux for security professionals</li>
+          <li>Security policies & frameworks</li>
+          <li><strong>Project:</strong> Network security baseline</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 4-6</div>
+        <h4>Vulnerability Assessment</h4>
+        <ul>
+          <li>Vulnerability scanning techniques</li>
+          <li>Network reconnaissance</li>
+          <li>Web application security</li>
+          <li>Social engineering attacks</li>
+          <li><strong>Project:</strong> Vulnerability assessment report</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 7-9</div>
+        <h4>Penetration Testing</h4>
+        <ul>
+          <li>Metasploit framework</li>
+          <li>Exploitation techniques</li>
+          <li>Post-exploitation activities</li>
+          <li>Privilege escalation</li>
+          <li><strong>Project:</strong> Penetration test engagement</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 10-12</div>
+        <h4>Defense & Incident Response</h4>
+        <ul>
+          <li>Security monitoring & SIEM</li>
+          <li>Incident response procedures</li>
+          <li>Digital forensics basics</li>
+          <li>Security architecture</li>
+          <li><strong>Final:</strong> Complete security assessment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Is cybersecurity only for technical people? <span class="toggle">+</span></h4>
+        <div class="answer">While technical skills are important, cybersecurity also needs analytical thinking, problem-solving, and communication skills. We teach both technical and soft skills needed for success.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What's the difference between ethical hacking and cybersecurity? <span class="toggle">+</span></h4>
+        <div class="answer">Ethical hacking (penetration testing) is a subset of cybersecurity focused on finding vulnerabilities, while cybersecurity includes broader protection, monitoring, and incident response.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Do I need programming knowledge for cybersecurity? <span class="toggle">+</span></h4>
+        <div class="answer">Basic scripting knowledge is helpful but not required to start. We cover essential Python and Bash scripting for security automation during the course.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What's the job market like for cybersecurity professionals? <span class="toggle">+</span></h4>
+        <div class="answer">Excellent! Cybersecurity professionals earn ₦400,000-₦800,000 monthly in Nigeria, with senior roles reaching ₦1.2M+. Global remote opportunities pay $80,000-$150,000+ annually.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Will this course help me get security certifications? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! The course prepares you for certifications like CEH, Security+, and provides foundational knowledge for advanced certs like CISSP and OSCP.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What computer setup do I need for cybersecurity training? <span class="toggle">+</span></h4>
+        <div class="answer">A computer with 8GB RAM minimum (16GB recommended), virtualization support, and adequate storage for security tools and virtual machines.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-cybersecurity.jpg" alt="Cybersecurity Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Senior Security Consultant & Ethical Hacker</p>
+        <p>With 7+ years in cybersecurity, Emmanuel has conducted security assessments for financial institutions, government agencies, and multinational corporations. He holds multiple security certifications and specializes in making complex security concepts accessible.</p>
+        <div class="instructor-stats">
+          <div class="stat">7+ Years Security</div>
+          <div class="stat">100+ Security Audits</div>
+          <div class="stat">CEH, Security+ Certified</div>
+          <div class="stat">Security Researcher</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Your Security Career</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Cybersecurity Course</h3>
+        <div class="price-main">₦45,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 12 weeks of intensive training</div>
+        <div class="feature-item">✅ 4 practical security assessments</div>
+        <div class="feature-item">✅ Kali Linux & security tools</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Security community access</div>
+        <div class="feature-item">✅ 1:1 mentorship sessions</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ Ethical hacking techniques</div>
+        <div class="feature-item">✅ Incident response skills</div>
+        <div class="feature-item">✅ Professional security portfolio</div>
+        <div class="feature-item">✅ Certification preparation</div>
+      </div>
+      
+      <div class="pricing-cta">
+        <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Cybersecurity%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+          <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+        </a>
+        <div class="alternative-ctas">
+          <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20Cybersecurity%20course" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+          </a>
+          <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20Cybersecurity%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20Cybersecurity%20course.%0A%0AThank you!" target="_blank">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+        </div>
+        <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- Advanced AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Security Expert</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        🛡️ Welcome! I'm your advanced cybersecurity assistant. I can help with:
+        <br>• Security concepts & methodologies
+        <br>• Career paths & certification guidance
+        <br>• Tools (Kali Linux, Metasploit, Wireshark)
+        <br>• Ethical hacking techniques
+        <br>• Network security & defense
+        <br>• Incident response & forensics
+        <br><br>What would you like to know about cybersecurity?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about security, hacking, or careers...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Advanced AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    // Basic course info
+    'hello': '🛡️ Hello! Ready to master cybersecurity? What would you like to know?',
+    'hi': '👋 Hi there! I specialize in cybersecurity and ethical hacking careers. How can I help?',
+    'price': '💰 The Cybersecurity course is ₦45,000 with lifetime access, 12 weeks of training, and 4 security assessments.',
+    'duration': '⏱️ 12-week intensive course with 8-10 hours weekly including hands-on labs and security projects.',
+    
+    // Technical details
+    'what will i learn': '🎯 You\'ll learn: Network security, ethical hacking, vulnerability assessment, incident response, and conduct 4 security assessments.',
+    'ethical hacking': '⚔️ Ethical Hacking: Legal penetration testing, vulnerability assessment, and security testing methodologies.',
+    'network security': '🌐 Network Security: Firewalls, IDS/IPS, network monitoring, and protecting network infrastructure.',
+    'penetration testing': '🔓 Penetration Testing: Kali Linux, Metasploit, vulnerability exploitation, and security assessment.',
+    'incident response': '🚨 Incident Response: Security monitoring, threat detection, and handling security breaches.',
+    'tools': '🛠️ Security Tools: Kali Linux, Wireshark, Metasploit, Nmap, Burp Suite, and industry-standard security software.',
+    
+    // Career & opportunities
+    'career': '💼 Cybersecurity professionals earn ₦400,000-₦800,000 monthly. Roles: Security Analyst, Penetration Tester, Security Engineer, CISO.',
+    'salary': '💰 Junior: ₦400k-₦500k, Mid: ₦500k-₦650k, Senior: ₦650k-₦800k+. International: $80k-$150k+ annually.',
+    'certifications': '📜 Key certs: CEH, Security+, CISSP, OSCP. We prepare you for entry-level certifications and provide foundation for advanced ones.',
+    
+    // Learning path
+    'beginner': '🚀 Some IT background recommended. Start with networking basics, then progress to security concepts and hands-on testing.',
+    'specializations': '🎯 Career paths: Penetration Testing, Security Operations, Digital Forensics, Security Architecture, or GRC (Governance, Risk, Compliance).',
+    'prerequisites': '📚 Recommended: Basic networking knowledge, Linux fundamentals, understanding of IT systems. We cover essential prerequisites.',
+    
+    // Security concepts
+    'vulnerability': '🔍 Vulnerability Assessment: Identifying security weaknesses, scanning systems, and prioritizing remediation.',
+    'threat': '⚠️ Threat Intelligence: Understanding attack vectors, threat actors, and proactive security measures.',
+    'defense': '🛡️ Defense Strategies: Layered security, defense in depth, and proactive security measures.',
+    
+    // Tools & techniques
+    'kali linux': '🐉 Kali Linux: Industry-standard penetration testing platform with 600+ security tools pre-installed.',
+    'metasploit': '💣 Metasploit: Exploitation framework for developing and executing exploit code against remote targets.',
+    'wireshark': '📡 Wireshark: Network protocol analyzer for troubleshooting, analysis, and security assessment.',
+    
+    // Support & resources
+    'support': '🤝 Full support: Security labs, mentorship, career guidance, and lifetime community access.',
+    'job': '💼 Career support: Portfolio development, certification guidance, and job placement assistance.',
+    
+    // Enrollment
+    'enroll': '📱 Enroll via WhatsApp above, or contact us for corporate security training and team packages.',
+    'thank you': '😊 You\'re welcome! Excited to see you protect organizations from cyber threats!',
+    'thanks': '🚀 Happy to help! Cybersecurity is about thinking like both attacker and defender - ask me anything!'
+  };
+
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    
+    // Smart matching for cybersecurity
+    if (lowerQuestion.includes('ethical') || lowerQuestion.includes('hacking') || lowerQuestion.includes('penetration')) {
+      return aiResponses['ethical hacking'];
+    }
+    if (lowerQuestion.includes('network') || lowerQuestion.includes('firewall') || lowerQuestion.includes('infrastructure')) {
+      return aiResponses['network security'];
+    }
+    if (lowerQuestion.includes('penetration') || lowerQuestion.includes('testing') || lowerQuestion.includes('vulnerability')) {
+      return aiResponses['penetration testing'];
+    }
+    if (lowerQuestion.includes('incident') || lowerQuestion.includes('response') || lowerQuestion.includes('breach')) {
+      return aiResponses['incident response'];
+    }
+    if (lowerQuestion.includes('kali') || lowerQuestion.includes('linux') || lowerQuestion.includes('tools')) {
+      return aiResponses['kali linux'];
+    }
+    if (lowerQuestion.includes('metasploit') || lowerQuestion.includes('exploit') || lowerQuestion.includes('framework')) {
+      return aiResponses['metasploit'];
+    }
+    if (lowerQuestion.includes('wireshark') || lowerQuestion.includes('packet') || lowerQuestion.includes('analysis')) {
+      return aiResponses['wireshark'];
+    }
+    if (lowerQuestion.includes('certification') || lowerQuestion.includes('cert') || lowerQuestion.includes('ceh')) {
+      return aiResponses['certifications'];
+    }
+    
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    return "I can help with cybersecurity concepts, ethical hacking techniques, career guidance, security tools (Kali Linux, etc.), certification paths, incident response, and security career development. What would you like to know?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 600);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Course card reveal animation
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card, .benefit-card, .syllabus-item, .layer-card, .tool-card').forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) element.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>

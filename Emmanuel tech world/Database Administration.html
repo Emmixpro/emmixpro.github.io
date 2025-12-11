@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SQL & Databases — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .alternative-ctas {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .alternative-ctas .btn-ghost {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .database-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 200px;
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .flow-step h4 {
+      margin: 15px 0 10px;
+      color: var(--accent);
+    }
+    .flow-icon {
+      font-size: 2.5em;
+      color: var(--neon);
+    }
+    
+    .tools-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .tool-card {
+      flex: 1;
+      min-width: 150px;
+      background: var(--panel);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .tool-icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .mysql { color: #4479A1; }
+    .postgresql { color: #336791; }
+    .mongodb { color: #47A248; }
+    .sqlserver { color: #CC2927; }
+    .oracle { color: #F80000; }
+    .sqlite { color: #003B57; }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">SQL & Databases</h1>
+    <p class="hero-sub">Master database management, query optimization, and data modeling. Become the data backbone of any organization.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Beginner to Advanced</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">8 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦28,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">3 Database Systems</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20SQL%20%26%20Databases%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20SQL%20%26%20Databases%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20SQL%20%26%20Databases%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20SQL%20%26%20Databases%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/data base.avif" alt="SQL & Databases">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn SQL & Databases?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🗄️ Universal Skill</h4>
+        <p>SQL is used by 99% of organizations worldwide for data storage and retrieval</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 High Demand</h4>
+        <p>Database skills are essential for developers, analysts, and IT professionals</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🚀 Career Foundation</h4>
+        <p>Mastering databases opens doors to backend development, data engineering, and DBA roles</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💰 Excellent ROI</h4>
+        <p>SQL skills provide immediate value and command premium salaries across industries</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Database Development Process</h2>
+    <div class="database-flow">
+      <div class="flow-step">
+        <div class="flow-icon">📐</div>
+        <h4>Database Design</h4>
+        <p>Design efficient database schemas with proper normalization</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🛠️</div>
+        <h4>Implementation</h4>
+        <p>Create tables, relationships, and implement database structures</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">🔍</div>
+        <h4>Query Development</h4>
+        <p>Write efficient SQL queries for data retrieval and manipulation</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-icon">⚡</div>
+        <h4>Optimization</h4>
+        <p>Optimize queries and database performance for scalability</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>Master the complete database development lifecycle from design to optimization. Learn SQL fundamentals, database administration, and work with both relational and NoSQL databases. Build 3 comprehensive database systems for different business scenarios.</p>
+        
+        <div class="tools-section">
+          <h3>Database Technologies</h3>
+          <div class="tools-showcase">
+            <div class="tool-card">
+              <div class="tool-icon mysql"><i class="fas fa-database"></i></div>
+              <h4>MySQL</h4>
+              <p>Popular open-source RDBMS</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon postgresql"><i class="fas fa-elephant"></i></div>
+              <h4>PostgreSQL</h4>
+              <p>Advanced open-source database</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon mongodb"><i class="fas fa-leaf"></i></div>
+              <h4>MongoDB</h4>
+              <p>Document-based NoSQL</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon sqlserver"><i class="fas fa-server"></i></div>
+              <h4>SQL Server</h4>
+              <p>Enterprise database system</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon sqlite"><i class="fas fa-mobile"></i></div>
+              <h4>SQLite</h4>
+              <p>Lightweight embedded database</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Projects You'll Complete</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>🏪 E-commerce Database</h4>
+            <p>Design and implement a complete online store database with products, customers, and orders</p>
+          </div>
+          <div class="project-item">
+            <h4>🏥 Hospital Management System</h4>
+            <p>Create a healthcare database for patient records, appointments, and medical staff</p>
+          </div>
+          <div class="project-item">
+            <h4>🏢 HR Management Database</h4>
+            <p>Build an employee management system with payroll, departments, and performance tracking</p>
+          </div>
+          <div class="project-item">
+            <h4>📊 Analytics Database</h4>
+            <p>Design a data warehouse for business intelligence and reporting</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>Backend developers</li>
+            <li>Data analysts</li>
+            <li>IT professionals</li>
+            <li>Career switchers</li>
+            <li>Business analysts</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>Basic computer skills</li>
+            <li>Logical thinking</li>
+            <li>No database experience needed</li>
+            <li>Problem-solving mindset</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>Database Administrator</li>
+            <li>SQL Developer</li>
+            <li>Backend Developer</li>
+            <li>Data Analyst</li>
+            <li>Business Intelligence Developer</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1-2</div>
+        <h4>SQL Fundamentals & Database Design</h4>
+        <ul>
+          <li>Relational database concepts</li>
+          <li>SQL syntax and basic queries</li>
+          <li>Database normalization</li>
+          <li>Entity-Relationship diagrams</li>
+          <li><strong>Project:</strong> Library management database</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 3-4</div>
+        <h4>Advanced SQL & Query Optimization</h4>
+        <ul>
+          <li>Complex joins and subqueries</li>
+          <li>Aggregate functions</li>
+          <li>Window functions</li>
+          <li>Query performance tuning</li>
+          <li><strong>Project:</strong> E-commerce analytics queries</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 5-6</div>
+        <h4>Database Administration & Security</h4>
+        <ul>
+          <li>User management & permissions</li>
+          <li>Backup and recovery</li>
+          <li>Indexing strategies</li>
+          <li>Transaction management</li>
+          <li><strong>Project:</strong> Secure multi-user database</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 7-8</div>
+        <h4>Advanced Databases & Integration</h4>
+        <ul>
+          <li>NoSQL databases (MongoDB)</li>
+          <li>Stored procedures & functions</li>
+          <li>Database integration with applications</li>
+          <li>Data warehousing concepts</li>
+          <li><strong>Final:</strong> Complete business database system</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Is SQL difficult to learn for beginners? <span class="toggle">+</span></h4>
+        <div class="answer">SQL is one of the easiest programming languages to learn! It uses English-like syntax and focuses on data manipulation rather than complex programming concepts. Perfect for beginners.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What's the difference between SQL and NoSQL databases? <span class="toggle">+</span></h4>
+        <div class="answer">SQL databases are relational with structured tables, while NoSQL databases are non-relational and flexible. We cover both to give you comprehensive database skills.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Which database should I learn first? <span class="toggle">+</span></h4>
+        <div class="answer">Start with MySQL or PostgreSQL - they're free, widely used, and excellent for learning SQL fundamentals. We begin with MySQL and progress to other databases.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What's the job market like for SQL professionals? <span class="toggle">+</span></h4>
+        <div class="answer">Excellent! SQL developers earn ₦300,000-₦600,000 monthly in Nigeria. Database administrators earn even more. SQL skills are required for most tech and data roles.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Will I learn about database performance optimization? <span class="toggle">+</span></h4>
+        <div class="answer">Absolutely! We cover indexing, query optimization, and performance tuning techniques that are crucial for real-world database applications.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Do I need to install expensive software? <span class="toggle">+</span></h4>
+        <div class="answer">No! We use free and open-source databases like MySQL, PostgreSQL, and MongoDB. All software we use is free for learning and development.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-sql-database.jpg" alt="SQL & Databases Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Senior Database Architect & SQL Expert</p>
+        <p>With 8+ years in database development and administration, Emmanuel has designed and optimized database systems for financial institutions, e-commerce platforms, and enterprise applications. He specializes in making complex database concepts practical and accessible.</p>
+        <div class="instructor-stats">
+          <div class="stat">8+ Years Database</div>
+          <div class="stat">100+ Database Systems</div>
+          <div class="stat">180+ Students Trained</div>
+          <div class="stat">Oracle Certified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Your Database Career</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>SQL & Databases Course</h3>
+        <div class="price-main">₦28,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 8 weeks of intensive training</div>
+        <div class="feature-item">✅ 3 comprehensive database projects</div>
+        <div class="feature-item">✅ MySQL, PostgreSQL & MongoDB</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Database community access</div>
+        <div class="feature-item">✅ 1:1 query optimization sessions</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ Database design principles</div>
+        <div class="feature-item">✅ Query performance tuning</div>
+        <div class="feature-item">✅ Professional portfolio</div>
+        <div class="feature-item">✅ Real business scenarios</div>
+      </div>
+      
+      <div class="pricing-cta">
+        <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20SQL%20%26%20Databases%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+          <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+        </a>
+        <div class="alternative-ctas">
+          <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20SQL%20%26%20Databases%20course" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+          </a>
+          <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20SQL%20%26%20Databases%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20SQL%20%26%20Databases%20course.%0A%0AThank you!" target="_blank">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+        </div>
+        <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- Advanced AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Database Expert</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        🗄️ Welcome! I'm your advanced SQL & database assistant. I can help with:
+        <br>• SQL queries & optimization
+        <br>• Database design & normalization
+        <br>• Career paths & specialization areas
+        <br>• Tools (MySQL, PostgreSQL, MongoDB)
+        <br>• Performance tuning & indexing
+        <br>• Database administration
+        <br><br>What would you like to know about databases?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about SQL, databases, or careers...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Advanced AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    // Basic course info
+    'hello': '🗄️ Hello! Ready to master SQL and databases? What would you like to know?',
+    'hi': '👋 Hi there! I specialize in SQL, databases, and data management careers. How can I help?',
+    'price': '💰 The SQL & Databases course is ₦28,000 with lifetime access, 8 weeks of training, and 3 database projects.',
+    'duration': '⏱️ 8-week intensive course with 6-8 hours weekly including hands-on database projects and query practice.',
+    
+    // Technical details
+    'what will i learn': '🎯 You\'ll learn: SQL fundamentals, database design, query optimization, administration, and build 3 complete database systems.',
+    'sql': '📝 SQL Fundamentals: SELECT queries, JOINs, subqueries, aggregate functions, and data manipulation language.',
+    'database design': '📐 Database Design: Normalization, ER diagrams, relationships, and creating efficient database schemas.',
+    'optimization': '⚡ Query Optimization: Indexing, query tuning, performance analysis, and efficient database operations.',
+    'administration': '🛠️ Database Administration: User management, backups, security, and maintenance tasks.',
+    'nosql': '📄 NoSQL Databases: MongoDB document storage, differences from SQL, and when to use each approach.',
+    
+    // Career & opportunities
+    'career': '💼 Database professionals earn ₦300,000-₦600,000 monthly. Roles: DBA, SQL Developer, Data Engineer, Backend Developer.',
+    'salary': '💰 Junior: ₦300k-₦400k, Mid: ₦400k-₦500k, Senior: ₦500k-₦600k+. DBA roles typically pay 20-30% more.',
+    'demand': '📈 SQL is the #2 most demanded programming skill globally. 99% of organizations use relational databases.',
+    
+    // Learning path
+    'beginner': '🌟 Perfect for complete beginners! SQL is one of the easiest languages to learn with English-like syntax.',
+    'specializations': '🎯 Career paths: Database Administration, Data Engineering, Backend Development, Business Intelligence, or Data Architecture.',
+    'prerequisites': '📚 No prerequisites needed! Basic computer skills and logical thinking are sufficient to start learning SQL.',
+    
+    // Database concepts
+    'normalization': '🎯 Database Normalization: Organizing data to reduce redundancy and improve data integrity through normal forms.',
+    'indexing': '📊 Indexing: Creating indexes to speed up data retrieval while understanding trade-offs with write performance.',
+    'transactions': '💳 Transactions: ACID properties (Atomicity, Consistency, Isolation, Durability) for reliable database operations.',
+    
+    // Tools & databases
+    'mysql': '🐬 MySQL: World\'s most popular open-source database, great for web applications and learning.',
+    'postgresql': '🐘 PostgreSQL: Advanced open-source database with excellent features and performance.',
+    'mongodb': '🍃 MongoDB: Leading NoSQL database for flexible, document-based data storage.',
+    
+    // Support & resources
+    'support': '🤝 Full support: Database design reviews, query optimization help, career guidance, and community access.',
+    'job': '💼 Career support: Portfolio development, resume preparation, and database project guidance.',
+    
+    // Enrollment
+    'enroll': '📱 Enroll via WhatsApp above, or contact us for corporate database training and team packages.',
+    'thank you': '😊 You\'re welcome! Excited to see the database systems you\'ll build!',
+    'thanks': '🚀 Happy to help! Databases are the foundation of every application - ask me anything!'
+  };
+
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    
+    // Smart matching for databases
+    if (lowerQuestion.includes('sql') || lowerQuestion.includes('query') || lowerQuestion.includes('select')) {
+      return aiResponses['sql'];
+    }
+    if (lowerQuestion.includes('design') || lowerQuestion.includes('normalization') || lowerQuestion.includes('schema')) {
+      return aiResponses['database design'];
+    }
+    if (lowerQuestion.includes('optimization') || lowerQuestion.includes('performance') || lowerQuestion.includes('index')) {
+      return aiResponses['optimization'];
+    }
+    if (lowerQuestion.includes('administration') || lowerQuestion.includes('dba') || lowerQuestion.includes('backup')) {
+      return aiResponses['administration'];
+    }
+    if (lowerQuestion.includes('nosql') || lowerQuestion.includes('mongodb') || lowerQuestion.includes('document')) {
+      return aiResponses['nosql'];
+    }
+    if (lowerQuestion.includes('mysql') || lowerQuestion.includes('open source')) {
+      return aiResponses['mysql'];
+    }
+    if (lowerQuestion.includes('postgres') || lowerQuestion.includes('postgresql')) {
+      return aiResponses['postgresql'];
+    }
+    if (lowerQuestion.includes('normalization') || lowerQuestion.includes('normal form')) {
+      return aiResponses['normalization'];
+    }
+    
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    return "I can help with SQL queries, database design, career guidance, performance optimization, database tools (MySQL, PostgreSQL, MongoDB), administration tasks, and database career development. What would you like to know?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 600);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Course card reveal animation
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card, .benefit-card, .syllabus-item, .flow-step, .tool-card').forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) element.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>

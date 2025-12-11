@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Blockchain Development — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .alternative-ctas {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .alternative-ctas .btn-ghost {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">Blockchain Development</h1>
+    <p class="hero-sub">Smart contracts, Solidity basics, Web3 and deploying dApps to testnets with real tooling.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Beginner → Intermediate</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">8 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦40,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">3 dApps & Smart Contracts</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Blockchain%20Development%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20Blockchain%20Development%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20Blockchain%20Development%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20Blockchain%20Development%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/blockchain.jpg" alt="Blockchain">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn Blockchain Development?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>⛓️ Revolutionary Technology</h4>
+        <p>Blockchain is transforming finance, supply chain, and digital ownership globally</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 High-Paying Careers</h4>
+        <p>Blockchain developers command top salaries with massive global demand</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🚀 Early Adoption Advantage</h4>
+        <p>Get in early on Web3 technology that's shaping the future of the internet</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🌍 Borderless Opportunities</h4>
+        <p>Work on global projects from anywhere with cryptocurrency and remote teams</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>Master blockchain development from fundamentals to advanced smart contract programming. Learn Solidity, Web3.js, and deploy decentralized applications (dApps) to Ethereum testnets and mainnet. Build real projects that demonstrate your skills in this high-growth field.</p>
+        
+        <div class="tools-section">
+          <h3>Technologies & Platforms</h3>
+          <div class="tools-list">
+            <span class="tool-tag">Solidity</span>
+            <span class="tool-tag">Web3.js</span>
+            <span class="tool-tag">Ethereum</span>
+            <span class="tool-tag">Hardhat</span>
+            <span class="tool-tag">Truffle</span>
+            <span class="tool-tag">IPFS</span>
+            <span class="tool-tag">MetaMask</span>
+            <span class="tool-tag">Remix IDE</span>
+          </div>
+        </div>
+
+        <h3>Projects You'll Build</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>💰 Token Contract</h4>
+            <p>ERC-20 token with minting, burning, and transfer functions</p>
+          </div>
+          <div class="project-item">
+            <h4>🎫 NFT Marketplace</h4>
+            <p>Complete NFT minting and trading platform</p>
+          </div>
+          <div class="project-item">
+            <h4>🗳️ Voting dApp</h4>
+            <p>Decentralized voting application with transparent results</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>Software developers</li>
+            <li>Web developers</li>
+            <li>Finance professionals</li>
+            <li>Tech entrepreneurs</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>JavaScript programming basics</li>
+            <li>Understanding of web development</li>
+            <li>No blockchain experience needed</li>
+            <li>Logical problem-solving</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>Smart Contract Developer</li>
+            <li>Blockchain Engineer</li>
+            <li>Web3 Developer</li>
+            <li>dApp Developer</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1-2</div>
+        <h4>Blockchain Fundamentals</h4>
+        <ul>
+          <li>Blockchain technology overview</li>
+          <li>Cryptography and hashing</li>
+          <li>Ethereum ecosystem</li>
+          <li>Wallets and transactions</li>
+          <li><strong>Project:</strong> First transaction on testnet</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 3-4</div>
+        <h4>Smart Contract Development</h4>
+        <ul>
+          <li>Solidity programming language</li>
+          <li>Remix IDE and development tools</li>
+          <li>ERC-20 token standard</li>
+          <li>Testing and debugging</li>
+          <li><strong>Project:</strong> Custom token contract</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 5-6</div>
+        <h4>dApp Development</h4>
+        <ul>
+          <li>Web3.js and Ethers.js</li>
+          <li>Frontend integration</li>
+          <li>MetaMask integration</li>
+          <li>IPFS for decentralized storage</li>
+          <li><strong>Project:</strong> Interactive dApp</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 7-8</div>
+        <h4>Advanced Concepts & Deployment</h4>
+        <ul>
+          <li>NFT development (ERC-721)</li>
+          <li>DeFi protocols overview</li>
+          <li>Security best practices</li>
+          <li>Mainnet deployment</li>
+          <li><strong>Final:</strong> Complete dApp project</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Will we deploy to mainnet and need real cryptocurrency? <span class="toggle">+</span></h4>
+        <div class="answer">We primarily use testnets (Goerli, Sepolia) for free development. Mainnet deployment is optional and we provide guidance for those who want to deploy with real ETH (~$50-100 worth for gas fees).</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What programming experience do I need? <span class="toggle">+</span></h4>
+        <div class="answer">Basic JavaScript knowledge is recommended. We teach Solidity from scratch and provide JavaScript refresher materials for web development.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Can I get a blockchain developer job after this course? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! Blockchain developers are in extremely high demand. Our graduates secure roles at Web3 companies, DeFi protocols, and NFT platforms with competitive salaries.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What's the salary range for blockchain developers? <span class="toggle">+</span></h4>
+        <div class="answer">Junior: ₦400,000-₦600,000, Mid-level: ₦600,000-₦900,000, Senior: ₦900,000-₦1,500,000 monthly. International remote: $80,000-$200,000+ annually.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Do I need to understand cryptocurrency trading? <span class="toggle">+</span></h4>
+        <div class="answer">No! We focus on blockchain technology and development, not trading or investment strategies. This is a technical programming course.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Which blockchain will we focus on? <span class="toggle">+</span></h4>
+        <div class="answer">Primarily Ethereum as it's the most established ecosystem, but concepts apply to all EVM-compatible chains (Polygon, BSC, Avalanche).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-blockchain.jpg" alt="Blockchain Development Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Blockchain Architect & Smart Contract Auditor</p>
+        <p>With 6+ years in blockchain development, Emmanuel has built DeFi protocols, NFT marketplaces, and conducted security audits for major Web3 projects. He specializes in secure smart contract development and blockchain architecture.</p>
+        <div class="instructor-stats">
+          <div class="stat">6+ Years Blockchain</div>
+          <div class="stat">50+ Smart Contracts</div>
+          <div class="stat">120+ Students Trained</div>
+          <div class="stat">Security Audit Expert</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Your Web3 Journey</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Blockchain Development Course</h3>
+        <div class="price-main">₦40,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 8 weeks of live training</div>
+        <div class="feature-item">✅ 3 dApp projects</div>
+        <div class="feature-item">✅ Solidity & Web3.js mastery</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Dedicated Web3 community</div>
+        <div class="feature-item">✅ 1:1 mentorship sessions</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ Testnet ETH provided</div>
+        <div class="feature-item">✅ Security best practices</div>
+        <div class="feature-item">✅ Portfolio development</div>
+        <div class="feature-item">✅ Job referral program</div>
+      </div>
+      
+      <div class="pricing-cta">
+        <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Blockchain%20Development%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+          <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+        </a>
+        <div class="alternative-ctas">
+          <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20Blockchain%20Development%20course" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+          </a>
+          <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20Blockchain%20Development%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20Blockchain%20Development%20course.%0A%0AThank you!" target="_blank">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+        </div>
+        <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- Advanced AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Blockchain Expert</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        ⛓️ Welcome! I'm your advanced Blockchain development assistant. I can help with:
+        <br>• Smart contract development & security
+        <br>• Web3 ecosystem & career opportunities
+        <br>• Technical requirements & setup
+        <br>• Gas fees & cost optimization
+        <br>• Project ideas & use cases
+        <br>• Security best practices
+        <br><br>What would you like to know about blockchain?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about blockchain, Web3, or smart contracts...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Advanced AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    // Basic course info
+    'hello': '⛓️ Hello! Ready to build the future of Web3? What would you like to know about blockchain development?',
+    'hi': '👋 Hi there! I specialize in blockchain, smart contracts, and Web3 technology. How can I help?',
+    'price': '💰 The Blockchain Development course is ₦40,000 with lifetime access, 8 weeks of training, and 3 dApp projects.',
+    'duration': '⏱️ 8-week intensive course with 6-8 hours weekly including live coding sessions and blockchain projects.',
+    
+    // Technical details
+    'what will i learn': '🎯 You\'ll learn: Solidity programming, smart contract development, Web3.js, dApp creation, NFT development, DeFi concepts, and blockchain security.',
+    'solidity': '📝 Solidity: Ethereum\'s smart contract language. We cover variables, functions, modifiers, events, inheritance, and security patterns.',
+    'web3': '🌐 Web3.js: JavaScript library for blockchain interaction. We learn contract calls, transactions, event listening, and MetaMask integration.',
+    'gas': '⛽ Gas fees: Transaction costs on Ethereum. We teach optimization techniques and work with testnets to avoid real costs during learning.',
+    'security': '🛡️ Security: Smart contract auditing, common vulnerabilities (reentrancy, overflow), and best practices for secure development.',
+    
+    // Career & opportunities
+    'career': '💼 Blockchain developers earn ₦400,000-₦1,500,000 monthly. Roles: Smart Contract Developer, Blockchain Engineer, Web3 Developer.',
+    'salary': '💰 Junior: ₦400k-₦600k, Mid: ₦600k-₦900k, Senior: ₦900k-₦1.5M. International remote: $80k-$200k+ annually.',
+    'freelance': '💸 Blockchain freelancers: $75-$200/hour. Projects: Smart contract development, dApp creation, security audits, token launches.',
+    
+    // Technical requirements
+    'computer': '💻 Requirements: Standard computer with 8GB+ RAM. No special hardware needed for blockchain development.',
+    'crypto': '💰 Cryptocurrency: Testnet ETH provided for free development. Mainnet deployment optional with guidance (~$50-100 in ETH for gas).',
+    
+    // Projects & platforms
+    'projects': '🔧 Projects: ERC-20 token contract, NFT marketplace, voting dApp - all deployed to testnets with frontend interfaces.',
+    'platforms': '🖥️ Development: Hardhat/Truffle frameworks, Remix IDE, MetaMask, Infura/Alchemy nodes, IPFS for decentralized storage.',
+    
+    // Support & enrollment
+    'support': '🤝 Lifetime Web3 community access, career support, portfolio reviews, job referrals for 6 months.',
+    'enroll': '📱 Enroll via WhatsApp above, or contact us for corporate blockchain training.',
+    'thank you': '😊 You\'re welcome! Excited to see the decentralized applications you\'ll build!',
+    'thanks': '🚀 Happy to help! The decentralized future needs your code - ask me anything!'
+  };
+
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    
+    // Smart matching for blockchain
+    if (lowerQuestion.includes('solidity')) {
+      return aiResponses['solidity'];
+    }
+    if (lowerQuestion.includes('web3')) {
+      return aiResponses['web3'];
+    }
+    if (lowerQuestion.includes('gas') || lowerQuestion.includes('fee')) {
+      return aiResponses['gas'];
+    }
+    if (lowerQuestion.includes('security') || lowerQuestion.includes('audit') || lowerQuestion.includes('safe')) {
+      return aiResponses['security'];
+    }
+    if (lowerQuestion.includes('crypto') || lowerQuestion.includes('currency') || lowerQuestion.includes('eth')) {
+      return aiResponses['crypto'];
+    }
+    
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    return "I can help with Solidity programming, Web3 development, career opportunities, gas fee optimization, security best practices, and project guidance. What would you like to know?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 600);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Course card reveal animation
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) card.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>

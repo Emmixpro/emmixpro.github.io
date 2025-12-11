@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Mobile App Development — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    /* Enhanced Button Styles */
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    /* AI Assistant Styles */
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    /* Enhanced sections */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">Mobile App Development</h1>
+    <p class="hero-sub">Build cross-platform apps using React Native or Flutter basics; publish guides included.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Beginner</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">8 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦30,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">3 Real Apps</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Mobile%20App%20Development%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20Mobile%20App%20Development%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20Mobile%20App%20Development%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20Mobile%20App%20Development%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/mobile app.avif" alt="Mobile App Development">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn Mobile Development?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🚀 High Demand</h4>
+        <p>Mobile developers are among the most sought-after tech professionals globally with 30%+ growth year over year</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 Freelance Opportunities</h4>
+        <p>Build apps for clients worldwide or create your own products with unlimited income potential</p>
+      </div>
+      <div class="benefit-card">
+        <h4>📱 Cross-Platform</h4>
+        <p>Write code once, deploy to both iOS and Android - maximize your reach and efficiency</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🎯 Practical Projects</h4>
+        <p>Build 3 real apps you can showcase in your portfolio and use as talking points in interviews</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>This comprehensive course takes you from zero to capable mobile developer. You'll learn React Native fundamentals while understanding Flutter concepts, build responsive UIs, manage state effectively, integrate APIs, and learn the complete app publishing process for both Apple App Store and Google Play Store.</p>
+        
+        <div class="tools-section">
+          <h3>Technologies & Tools</h3>
+          <div class="tools-list">
+            <span class="tool-tag">React Native</span>
+            <span class="tool-tag">JavaScript/TypeScript</span>
+            <span class="tool-tag">Expo</span>
+            <span class="tool-tag">Redux</span>
+            <span class="tool-tag">REST APIs</span>
+            <span class="tool-tag">Firebase</span>
+            <span class="tool-tag">App Store Connect</span>
+            <span class="tool-tag">Google Play Console</span>
+          </div>
+        </div>
+
+        <h3>What You'll Build</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>📱 Task Manager App</h4>
+            <p>Full-featured todo app with local storage, push notifications, and smooth animations</p>
+          </div>
+          <div class="project-item">
+            <h4>🌦️ Weather App</h4>
+            <p>Real-time weather app with location services, beautiful UI, and API integration</p>
+          </div>
+          <div class="project-item">
+            <h4>🛒 E-commerce Demo</h4>
+            <p>Product catalog with cart functionality, user authentication, and payment integration</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>Web developers expanding to mobile</li>
+            <li>Career switchers into tech</li>
+            <li>Entrepreneurs building their own apps</li>
+            <li>Freelancers adding mobile services</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>Basic programming knowledge</li>
+    <li>JavaScript fundamentals helpful</li>
+            <li>No mobile experience required</li>
+            <li>Dedication to learn and practice</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>Mobile Developer (₦150k-₦400k/month)</li>
+            <li>Freelance App Developer ($20-$50/hr)</li>
+            <li>React Native Specialist</li>
+            <li>Cross-Platform Developer</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1-2</div>
+        <h4>Foundation & Setup</h4>
+        <ul>
+          <li>React Native environment setup</li>
+          <li>Expo vs React Native CLI</li>
+          <li>Components, JSX, and styling</li>
+          <li>Debugging and developer tools</li>
+          <li><strong>Project:</strong> Basic component library</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 3-4</div>
+        <h4>Navigation & UI Patterns</h4>
+        <ul>
+          <li>React Navigation setup</li>
+          <li>Stack, Tab, and Drawer navigators</li>
+          <li>Responsive design for mobile</li>
+          <li>Common UI components and patterns</li>
+          <li><strong>Project:</strong> Multi-screen app with navigation</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 5-6</div>
+        <h4>State Management & Data</h4>
+        <ul>
+          <li>React hooks in depth</li>
+          <li>Context API for state management</li>
+          <li>AsyncStorage for local data</li>
+          <li>Working with REST APIs</li>
+          <li><strong>Project:</strong> API-integrated app</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 7</div>
+        <h4>Advanced Features</h4>
+        <ul>
+          <li>Push notifications</li>
+          <li>Camera and image processing</li>
+          <li>Location services</li>
+          <li>Authentication flows</li>
+          <li><strong>Project:</strong> Feature-rich application</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 8</div>
+        <h4>Publishing & Deployment</h4>
+        <ul>
+          <li>App Store guidelines</li>
+          <li>Google Play Store requirements</li>
+          <li>App signing and builds</li>
+          <li>Submission process walkthrough</li>
+          <li><strong>Final:</strong> Publish your app to stores</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Which stack will we focus on - React Native or Flutter? <span class="toggle">+</span></h4>
+        <div class="answer">We primarily focus on React Native as it's JavaScript-based and has a gentler learning curve. However, we include Flutter overview sessions and compare both ecosystems so you can make informed decisions for future projects.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Do I need a Mac for iOS development? <span class="toggle">+</span></h4>
+        <div class="answer">For full iOS publishing, yes - you'll need a Mac. However, you can develop and test iOS apps using Expo and simulators during the course. We provide alternatives for Windows/Linux users and focus on techniques that work across platforms.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What about prior programming experience? <span class="toggle">+</span></h4>
+        <div class="answer">Basic programming knowledge is helpful but we start from fundamentals. If you're completely new to programming, we recommend going through our JavaScript basics resources first (provided to all students).</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Will I be able to get a job after this course? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! We focus on practical, employable skills. You'll build a portfolio of 3 real apps, learn industry best practices, and receive career guidance. Many of our students secure junior positions or freelance work upon completion.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What support is available during the course? <span class="toggle">+</span></h4>
+        <div class="answer">You get full support: weekly live Q&A sessions, dedicated Telegram group for daily questions, code reviews, and 1:1 mentorship sessions. Our instructors are actively involved throughout your learning journey.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Are the classes recorded? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! All live sessions are recorded and available within hours. You get lifetime access to all course materials, updates, and recordings, so you can learn at your own pace.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-mobile.jpg" alt="Mobile Development Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Senior Mobile Developer & Instructor</p>
+        <p>With over 7 years of experience in mobile development, Emmanuel has built and published 20+ apps across both iOS and Android platforms. He specializes in React Native and has trained hundreds of developers in mobile technologies, helping them launch successful tech careers.</p>
+        <div class="instructor-stats">
+          <div class="stat">7+ Years Experience</div>
+          <div class="stat">20+ Apps Published</div>
+          <div class="stat">300+ Students Trained</div>
+          <div class="stat">95% Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Your Mobile Development Journey</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Mobile App Development Course</h3>
+        <div class="price-main">₦30,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 8 weeks of live training</div>
+        <div class="feature-item">✅ 3 real-world projects</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Dedicated Telegram community</div>
+        <div class="feature-item">✅ 1:1 mentorship sessions</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ App publishing assistance</div>
+        <div class="feature-item">✅ Portfolio review</div>
+        <div class="feature-item">✅ Job referral program</div>
+      </div>
+      
+      <div class="pricing-cta">
+  <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Mobile%20App%20Development%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+    <i class="fab fa-whatsapp"></i> Enroll Now via WhatsApp
+  </a>
+  <div class="alternative-ctas">
+    <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20Mobile%20App%20Development%20course" target="_blank">
+      <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+    </a>
+    <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20Mobile%20App%20Development%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20Mobile%20App%20Development%20course.%0A%0AThank you!" target="_blank">
+      <i class="fas fa-envelope"></i> Send Email
+    </a>
+  </div>
+  <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+</div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Course Assistant</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        Hi! I'm your course assistant. I can help you with:
+        <br>• Course information
+        <br>• Syllabus details  
+        <br>• Enrollment process
+        <br>• Technical requirements
+        <br><br>What would you like to know?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about the course...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    'hello': 'Hello! How can I help you with the Mobile App Development course?',
+    'hi': 'Hi there! What would you like to know about the course?',
+    'price': 'The Mobile App Development course costs ₦30,000 with lifetime access to all materials.',
+    'duration': 'This is an 8-week course with live sessions and recorded materials available.',
+    'what will i learn': 'You\'ll learn React Native, mobile UI design, state management, API integration, and app publishing for both iOS and Android stores.',
+    'prerequisites': 'Basic programming knowledge is helpful. JavaScript fundamentals are recommended but we start from the basics.',
+    'projects': 'You\'ll build 3 real apps: a Task Manager, Weather App, and E-commerce demo for your portfolio.',
+    'enroll': 'You can enroll via WhatsApp, Telegram, or Email using the buttons above. We accept various payment methods.',
+    'career': 'Graduates become Mobile Developers, Freelance App Developers, or React Native Specialists with earning potential of ₦150k-₦400k monthly.',
+    'support': 'You get live Q&A sessions, Telegram community access, 1:1 mentorship, and lifetime course updates.',
+    'thank you': 'You\'re welcome! Feel free to ask if you have more questions about the course.',
+    'thanks': 'You\'re welcome! Let me know if you need any other information.'
+  };
+
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    return "I can answer questions about course pricing, duration, curriculum, projects, enrollment, career outcomes, and support. Could you please ask about one of these topics?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 1000);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Terms & Privacy quick modal
+  function openModal(contentHtml) {
+    const overlay = document.createElement('div');
+    overlay.style= 'position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;z-index:9999';
+    const panel = document.createElement('div');
+    panel.style='background:white;border-radius:12px;max-width:880px;width:92%;padding:20px;box-shadow:0 20px 60px rgba(2,6,23,0.4);';
+    panel.innerHTML = contentHtml + '<div style="text-align:right;margin-top:10px"><button id="modal-close" style="padding:8px 12px;border-radius:8px;border:none;background:#6a5acd;color:white;font-weight:700">Close</button></div>';
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    document.getElementById('modal-close').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  }
+
+  // Course card reveal animation
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) card.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>

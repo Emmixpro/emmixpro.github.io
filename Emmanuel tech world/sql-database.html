@@ -1,0 +1,74 @@
+<!-- sql-database.html -->
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>HTML & CSS — Emmanuel's Tech World</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+<main>
+<section class="hero"><div class="hero-left"><h1 id="course-title">SQL & Databases</h1><p class="hero-sub">Relational databases, queries, indexing and NoSQL basics for production-ready apps.</p>
+<div style="margin-top:12px"><strong>Level:</strong> Beginner &nbsp;•&nbsp; <strong>Duration:</strong> 4 weeks &nbsp;•&nbsp; <strong>Price:</strong> ₦12,000</div>
+<div class="hero-ctas" style="margin-top:18px"><a id="wh-db" class="btn-neon" href="#">Enroll via WhatsApp</a><a class="btn-ghost telegram-link" href="#">Telegram</a></div></div>
+<figure><img class="hero-ill" src="images/course-database.jpg" alt="Databases"></figure></section>
+
+<section><h2>Overview</h2><div style="max-width:1000px;margin:0 auto"><p>Hands-on SQL queries, schema design, indexing, backups and an introduction to MongoDB.</p></div>
+<div style="display:grid;grid-template-columns:1fr 320px;gap:18px;max-width:1100px;margin:20px auto">
+<div><h3>What you'll learn</h3><ul><li>SQL querying</li><li>Schema design</li><li>Indexing & performance</li><li>NoSQL intro</li></ul><h3>Modules</h3><ol><li>SQL basics</li><li>Joins & aggregates</li><li>Schema & indexing</li><li>Backups</li><li>NoSQL intro</li><li>Project</li></ol></div>
+<aside style="background:var(--panel);padding:14px;border-radius:12px;"><h4>Careers</h4><ul><li>Database support</li><li>Backend data ops</li></ul></aside>
+</div></section>
+
+<section id="course-faq"><h2>FAQ</h2><div class="faq"><div class="faq-item"><h4>Will we use cloud DBs? <span class="toggle">+</span></h4><div class="answer">We demonstrate cloud-hosted DBs for demos, but local examples are used for labs.</div></div></div></section>
+
+<script>
+  // Small UI: reveal course cards when in viewport
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) card.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Terms & Privacy quick modal (very simple)
+  function openModal(contentHtml) {
+    const overlay = document.createElement('div');
+    overlay.style= 'position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;z-index:9999';
+    const panel = document.createElement('div');
+    panel.style='background:white;border-radius:12px;max-width:880px;width:92%;padding:20px;box-shadow:0 20px 60px rgba(2,6,23,0.4);';
+    panel.innerHTML = contentHtml + '<div style="text-align:right;margin-top:10px"><button id="modal-close" style="padding:8px 12px;border-radius:8px;border:none;background:#6a5acd;color:white;font-weight:700">Close</button></div>';
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    document.getElementById('modal-close').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  }
+
+  document.getElementById('show-terms').addEventListener('click', (e)=>{
+    e.preventDefault();
+    openModal(document.getElementById('terms-template').innerHTML);
+  });
+  document.getElementById('show-privacy').addEventListener('click',(e)=>{
+    e.preventDefault();
+    openModal(document.getElementById('privacy-template').innerHTML);
+  });
+  </script>
+<section><h2>Enroll</h2><div style="text-align:center"><a id="wh-db-cta-2" class="btn-neon" href="#">Enroll via WhatsApp</a></div></section>
+
+<footer class="site-footer" role="contentinfo">
+      <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+      <strong>Emanuel's Tech World</strong>
+
+      <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+      <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+    </footer>

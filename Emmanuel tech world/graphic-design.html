@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Graphic Design — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .alternative-ctas {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .alternative-ctas .btn-ghost {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .design-process {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px 0;
+    }
+    .process-step {
+      flex: 1;
+      min-width: 200px;
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .process-step h4 {
+      margin: 15px 0 10px;
+      color: var(--accent);
+    }
+    .process-icon {
+      font-size: 2.5em;
+      color: var(--neon);
+    }
+    
+    .tools-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .tool-card {
+      flex: 1;
+      min-width: 150px;
+      background: var(--panel);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .tool-icon {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .photoshop { color: #31A8FF; }
+    .illustrator { color: #FF9A00; }
+    .indesign { color: #FF3366; }
+    .figma { color: #F24E1E; }
+    .canva { color: #00C4CC; }
+    .coreldraw { color: #F78E21; }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">Graphic Design</h1>
+    <p class="hero-sub">Master visual communication, branding, and digital design principles to create stunning visuals.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Beginner to Advanced</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">8 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦25,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">5+ Professional Designs</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Graphic%20Design%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20Graphic%20Design%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20Graphic%20Design%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20Graphic%20Design%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/" alt="Graphic Design">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn Graphic Design?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🎨 High Demand Skill</h4>
+        <p>Every business needs visual content - from logos to marketing materials and social media graphics</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💡 Creative Expression</h4>
+        <p>Turn your creative ideas into professional designs that communicate powerful messages</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🚀 Diverse Opportunities</h4>
+        <p>Work in agencies, corporate teams, or freelance with flexible remote options</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 Portfolio Career</h4>
+        <p>Build a strong portfolio that showcases your unique style and attracts clients</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Design Process & Approach</h2>
+    <div class="design-process">
+      <div class="process-step">
+        <div class="process-icon">🔍</div>
+        <h4>Research & Discovery</h4>
+        <p>Understand client needs, target audience, and project objectives</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">💡</div>
+        <h4>Concept & Ideation</h4>
+        <p>Brainstorm ideas, create mood boards, and develop design concepts</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">✏️</div>
+        <h4>Design & Creation</h4>
+        <p>Bring concepts to life using professional design tools and techniques</p>
+      </div>
+      <div class="process-step">
+        <div class="process-icon">🔄</div>
+        <h4>Review & Refinement</h4>
+        <p>Gather feedback, make revisions, and perfect the final design</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>Master the complete graphic design workflow from concept to final delivery. Learn industry-standard tools, design principles, and creative techniques to create professional branding, marketing materials, and digital graphics. Build a comprehensive portfolio with 5+ real projects.</p>
+        
+        <div class="tools-section">
+          <h3>Design Tools & Software</h3>
+          <div class="tools-showcase">
+            <div class="tool-card">
+              <div class="tool-icon photoshop"><i class="fab fa-adobe"></i></div>
+              <h4>Adobe Photoshop</h4>
+              <p>Photo editing & digital painting</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon illustrator"><i class="fab fa-adobe"></i></div>
+              <h4>Adobe Illustrator</h4>
+              <p>Vector graphics & illustration</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon indesign"><i class="fab fa-adobe"></i></div>
+              <h4>Adobe InDesign</h4>
+              <p>Layout & publishing</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon figma"><i class="fab fa-figma"></i></div>
+              <h4>Figma</h4>
+              <p>UI/UX & prototyping</p>
+            </div>
+            <div class="tool-card">
+              <div class="tool-icon canva"><i class="fas fa-palette"></i></div>
+              <h4>Canva</h4>
+              <p>Quick social media designs</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Projects You'll Complete</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>🏢 Brand Identity Package</h4>
+            <p>Complete branding with logo, color palette, and brand guidelines</p>
+          </div>
+          <div class="project-item">
+            <h4>📱 Social Media Kit</h4>
+            <p>Cohesive social media templates and graphics</p>
+          </div>
+          <div class="project-item">
+            <h4>📄 Business Stationery</h4>
+            <p>Professional business cards, letterheads, and envelopes</p>
+          </div>
+          <div class="project-item">
+            <h4>📖 Magazine Layout</h4>
+            <p>Multi-page publication with typography and layout design</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>Creative individuals</li>
+            <li>Marketing professionals</li>
+            <li>Small business owners</li>
+            <li>Content creators</li>
+            <li>Career switchers</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>Basic computer skills</li>
+            <li>Creative mindset</li>
+            <li>No design experience needed</li>
+            <li>Access to computer</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>Graphic Designer</li>
+            <li>Brand Identity Designer</li>
+            <li>Marketing Designer</li>
+            <li>Freelance Designer</li>
+            <li>Art Director</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1-2</div>
+        <h4>Design Fundamentals & Tools</h4>
+        <ul>
+          <li>Design principles & elements</li>
+          <li>Color theory & psychology</li>
+          <li>Typography fundamentals</li>
+          <li>Adobe Photoshop basics</li>
+          <li><strong>Project:</strong> Color theory poster</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 3-4</div>
+        <h4>Vector Graphics & Branding</h4>
+        <ul>
+          <li>Adobe Illustrator mastery</li>
+          <li>Logo design principles</li>
+          <li>Vector illustration techniques</li>
+          <li>Brand identity development</li>
+          <li><strong>Project:</strong> Complete logo & brand guide</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 5-6</div>
+        <h4>Layout & Publication Design</h4>
+        <ul>
+          <li>Adobe InDesign workflow</li>
+          <li>Layout composition</li>
+          <li>Print vs digital design</li>
+          <li>Multi-page documents</li>
+          <li><strong>Project:</strong> Magazine spread design</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 7-8</div>
+        <h4>Portfolio Development & Business</h4>
+        <ul>
+          <li>Client presentation skills</li>
+          <li>Portfolio building</li>
+          <li>Freelance business setup</li>
+          <li>Pricing & contracts</li>
+          <li><strong>Final:</strong> Professional design portfolio</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Do I need artistic talent to become a graphic designer? <span class="toggle">+</span></h4>
+        <div class="answer">While creativity helps, graphic design is more about understanding principles and using tools effectively than raw artistic talent. We teach systematic approaches that anyone can learn regardless of artistic background.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What software will I need for this course? <span class="toggle">+</span></h4>
+        <div class="answer">We primarily use Adobe Creative Suite (Photoshop, Illustrator, InDesign) which offers student discounts, plus free alternatives like Figma and Canva. All software we use either has free trials or affordable student pricing.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Can I learn graphic design without a drawing background? <span class="toggle">+</span></h4>
+        <div class="answer">Absolutely! Most professional graphic designers use digital tools rather than hand-drawing. We focus on digital design techniques that don't require traditional drawing skills.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What's the job market like for graphic designers? <span class="toggle">+</span></h4>
+        <div class="answer">Excellent! Graphic designers earn ₦180,000-₦500,000 monthly in Nigeria, with senior roles reaching ₦600,000+. Freelance designers can earn ₦80,000-₦300,000 per project.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Will I be able to start freelancing after this course? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! We focus on building a professional portfolio with real projects, which is crucial for attracting clients. Our business module covers pricing, contracts, and finding clients.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What computer specifications do I need? <span class="toggle">+</span></h4>
+        <div class="answer">A modern computer with 8GB RAM minimum (16GB recommended), decent processor, and adequate storage. Both Windows and Mac work perfectly for design work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-graphic-design.jpg" alt="Graphic Design Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Senior Graphic Designer & Brand Strategist</p>
+        <p>With 8+ years in visual design, Emmanuel has created brand identities, marketing campaigns, and digital graphics for businesses across various industries. He specializes in transforming complex ideas into compelling visual stories.</p>
+        <div class="instructor-stats">
+          <div class="stat">8+ Years Experience</div>
+          <div class="stat">200+ Brand Projects</div>
+          <div class="stat">150+ Students Trained</div>
+          <div class="stat">Design Agency Founder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Your Design Career</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Graphic Design Course</h3>
+        <div class="price-main">₦25,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 8 weeks of live training</div>
+        <div class="feature-item">✅ 5+ professional design projects</div>
+        <div class="feature-item">✅ Adobe Creative Suite training</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Design community access</div>
+        <div class="feature-item">✅ 1:1 portfolio reviews</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ Brand identity development</div>
+        <div class="feature-item">✅ Print & digital design skills</div>
+        <div class="feature-item">✅ Professional portfolio</div>
+        <div class="feature-item">✅ Freelance business training</div>
+      </div>
+      
+      <div class="pricing-cta">
+        <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Graphic%20Design%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+          <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+        </a>
+        <div class="alternative-ctas">
+          <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20Graphic%20Design%20course" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+          </a>
+          <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20Graphic%20Design%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20Graphic%20Design%20course.%0A%0AThank you!" target="_blank">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+        </div>
+        <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- Advanced AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Design Expert</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        🎨 Welcome! I'm your advanced graphic design assistant. I can help with:
+        <br>• Design principles & techniques
+        <br>• Career paths & specialization areas
+        <br>• Portfolio development & client work
+        <br>• Tools (Adobe Suite, Figma, Canva)
+        <br>• Brand identity & marketing design
+        <br>• Freelance business & pricing
+        <br><br>What would you like to know about graphic design?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about design, tools, or careers...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Advanced AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    // Basic course info
+    'hello': '🎨 Hello! Ready to master graphic design? What would you like to know?',
+    'hi': '👋 Hi there! I specialize in graphic design and creative careers. How can I help?',
+    'price': '💰 The Graphic Design course is ₦25,000 with lifetime access, 8 weeks of training, and 5+ professional projects.',
+    'duration': '⏱️ 8-week comprehensive course with 6-8 hours weekly including design projects and portfolio development.',
+    
+    // Technical details
+    'what will i learn': '🎯 You\'ll learn: Design principles, Adobe Creative Suite, branding, layout design, and build 5+ professional design projects.',
+    'photoshop': '🖼️ Adobe Photoshop: Photo editing, digital painting, compositing, and creating stunning visual effects.',
+    'illustrator': '✏️ Adobe Illustrator: Vector graphics, logo design, illustration, and scalable artwork creation.',
+    'indesign': '📄 Adobe InDesign: Layout design, typography, multi-page documents, and professional publishing.',
+    'branding': '🏢 Brand Identity: Logo design, color theory, typography systems, and complete brand guidelines.',
+    'portfolio': '📁 Portfolio: 5+ professional projects including branding, marketing materials, and publication design.',
+    
+    // Career & opportunities
+    'career': '💼 Graphic designers earn ₦180,000-₦500,000 monthly. Roles: Brand Designer, Marketing Designer, Art Director, Freelance Designer.',
+    'salary': '💰 Junior: ₦180k-₦250k, Mid: ₦250k-₦350k, Senior: ₦350k-₦500k. Freelance: ₦80k-₦300k per project.',
+    'freelance': '💸 Graphic design freelancing: Great for remote work. Build your client base and work on diverse projects worldwide.',
+    
+    // Learning path
+    'beginner': '🌟 Perfect for complete beginners! No design experience needed. We start from fundamentals and build up.',
+    'specializations': '🎯 After basics: Brand Identity, UI/UX Design, Motion Graphics, Packaging Design, or Art Direction.',
+    'tools': '🛠️ Primary: Adobe Photoshop, Illustrator, InDesign. Secondary: Figma, Canva for quick social media designs.',
+    
+    // Design concepts
+    'design principles': '📐 Key principles: Contrast, alignment, repetition, proximity, balance, and visual hierarchy.',
+    'color theory': '🎨 Color Theory: Color psychology, color harmonies, creating palettes, and using color effectively in design.',
+    'typography': '🔤 Typography: Type classification, pairing fonts, hierarchy, and creating readable, beautiful text layouts.',
+    
+    // Software & tools
+    'adobe': '💻 Adobe Creative Suite: Industry standard for professional design. Student discounts available!',
+    'software cost': '💰 Adobe offers student pricing. Free alternatives: Figma, Canva, GIMP, Inkscape for learning.',
+    
+    // Support & resources
+    'support': '🤝 Full support: Design critiques, portfolio reviews, career guidance, and lifetime community access.',
+    'job': '💼 Career support: Portfolio development, client acquisition strategies, and freelance business setup.',
+    
+    // Enrollment
+    'enroll': '📱 Enroll via WhatsApp above, or contact us for corporate training and team packages.',
+    'thank you': '😊 You\'re welcome! Excited to see the amazing designs you\'ll create!',
+    'thanks': '🚀 Happy to help! Design is about solving problems and creating visual impact - ask me anything!'
+  };
+
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    
+    // Smart matching for graphic design
+    if (lowerQuestion.includes('photoshop') || lowerQuestion.includes('photo') || lowerQuestion.includes('editing')) {
+      return aiResponses['photoshop'];
+    }
+    if (lowerQuestion.includes('illustrator') || lowerQuestion.includes('vector') || lowerQuestion.includes('logo')) {
+      return aiResponses['illustrator'];
+    }
+    if (lowerQuestion.includes('indesign') || lowerQuestion.includes('layout') || lowerQuestion.includes('publishing')) {
+      return aiResponses['indesign'];
+    }
+    if (lowerQuestion.includes('brand') || lowerQuestion.includes('identity') || lowerQuestion.includes('logo')) {
+      return aiResponses['branding'];
+    }
+    if (lowerQuestion.includes('color') || lowerQuestion.includes('palette') || lowerQuestion.includes('psychology')) {
+      return aiResponses['color theory'];
+    }
+    if (lowerQuestion.includes('typography') || lowerQuestion.includes('font') || lowerQuestion.includes('type')) {
+      return aiResponses['typography'];
+    }
+    if (lowerQuestion.includes('adobe') || lowerQuestion.includes('software') || lowerQuestion.includes('tool')) {
+      return aiResponses['adobe'];
+    }
+    if (lowerQuestion.includes('portfolio') || lowerQuestion.includes('projects') || lowerQuestion.includes('work')) {
+      return aiResponses['portfolio'];
+    }
+    
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    return "I can help with graphic design principles, career guidance, portfolio development, design tools (Adobe Suite, etc.), brand identity creation, freelance business, and design career paths. What would you like to know?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 600);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Course card reveal animation
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card, .benefit-card, .syllabus-item, .process-step, .tool-card').forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) element.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+
+</head>
+<body>
+  <div class="site">
+
+    <!-- HEADER -->
+    <!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="brand">
+    <!-- Logo Image -->
+    <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+
+    
+
+    <div class="brand-text">
+      <div class="brand-title">Emmanuel's Tech World</div>
+      <div class="brand-sub">Practical tech courses • Projects • Career-ready</div>
+    </div>
+  </div>
+
+  <nav class="main-nav" role="navigation" aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="courses.html">Courses</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button>
+      </nav>
+    </header>
+
+      
+
+    <!-- HERO -->
+    <section class="hero" id="home" role="main">
+      <div class="hero-left">
+        <h1 class="hero-title">Level up with real projects & mentorship</h1>
+        <p class="hero-sub">From Web Design and Python to Blockchain and Cloud DevOps — learn practical skills with hands-on projects and mentorship tailored to industry needs.</p>
+
+        <div class="rotator" aria-live="polite">
+          <div class="dot" aria-hidden="true"></div>
+          <div class="texts">
+            <div id="rotator-fact" class="fact">Loading facts…</div>
+            <div id="rotator-tip" class="tip">Loading tips…</div>
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <button class="btn-cta" onclick="window.open('courses.html','_blank')">Browse All Courses</button>
+          <a class="btn-ghost" href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false">Contact</a>
+        </div>
+      </div>
+
+      <figure>
+        <!-- course/learning illustration -->
+        <img class="hero-ill" src="images/fisrt_imptession.png" alt="Students learning and collaborating">
+      </figure>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Emanuel's Tech World</h2>
+      <div class="about">
+        <img src="images/learnig hub.jpg" alt="Team working together">
+        <div class="text">
+          <p><strong>Founded 2015.</strong> Emanuel's Tech World helps learners build practical skills and launch careers. We focus on project-based learning, mentorship, and real-world tools that employers actually want.</p>
+          <p>Each course includes hands-on projects, mentorship sessions, and career support. We keep content current with industry best practices and real-world tools.</p>
+          <p class="small"><strong>Location:</strong> Online-first. Physical classes available on request.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES (10 cards) -->
+    <section id="courses" aria-labelledby="courses-heading">
+      <h2 id="courses-heading">Courses (10 Popular Tracks)</h2>
+      <div class="courses-grid">
+
+        <!-- 1 Blockchain -->
+        <article class="course-card" data-course="Blockchain Technology">
+          <img src="images/blockchain.jpg" alt="Blockchain / ledger imagery">
+          <div class="course-title">Blockchain Technology</div>
+          <div class="course-desc">Distributed ledgers, smart contracts and dApp development — Solidity, Web3 and real deployments on testnets.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="Blockchain Development.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 2 UI/UX -->
+        <article class="course-card" data-course="UI/UX Design">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="Design and prototyping">
+          <div class="course-title">UI/UX Design</div>
+          <div class="course-desc">Design thinking, Figma prototyping, user testing, and building polished product interfaces for real users.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="ui-ux.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 3 Digital Marketing -->
+        <article class="course-card" data-course="Digital Marketing">
+          <img src="images/digital marketing.avif" alt="Digital marketing analytics">
+          <div class="course-title">Digital Marketing</div>
+          <div class="course-desc">SEO, ads, content strategy and analytics — practical campaigns that move KPIs.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="digital-marketing.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 4 Game Dev -->
+        <article class="course-card" data-course="Game Development">
+          <img src="images/game dv.avif" alt="Game development">
+          <div class="course-title">Game Development</div>
+          <div class="course-desc">Unity & Unreal basics, gameplay programming, asset pipeline and publishing prototypes.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="game-development.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 5 Ethical Hacking -->
+        <article class="course-card" data-course="Ethical Hacking & Pen Testing">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=80" alt="Ethical hacking">
+          <div class="course-title">Ethical Hacking & Pen Testing</div>
+          <div class="course-desc">Hands-on pentesting labs, recon, reporting and defensive best practices — legal & ethical.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="Ethical Hacking.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 6 Robotics & IoT -->
+        <article class="course-card" data-course="Robotics & IoT">
+          <img src="images/robotics.jpg" alt="Robotics and IoT">
+          <div class="course-title">Robotics & IoT</div>
+          <div class="course-desc">Microcontrollers, sensors, MQTT and cloud telemetry — build connected physical projects.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="robotics.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 7 Video Editing -->
+        <article class="course-card" data-course="Video Editing & Motion Graphics">
+          <img src="images/VIDEO EDITING.avif" alt="Video editing">
+          <div class="course-title">Video Editing & Motion Graphics</div>
+          <div class="course-desc">Premiere & After Effects workflows, color grading, motion design and export workflows.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="Video Editing.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 8 Cloud DevOps -->
+        <article class="course-card" data-course="Cloud DevOps Engineering">
+          <img src="images/cloud.avif" alt="Cloud and DevOps">
+          <div class="course-title">Cloud DevOps Engineering</div>
+          <div class="course-desc">Containers, IaC, Kubernetes, CI/CD and cloud deployments with practical labs and pipelines.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="Cloud DevOps.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 9 Database Admin -->
+        <article class="course-card" data-course="Database Administration">
+          <img src="images/data base.avif" alt="Database admin">
+          <div class="course-title">Database Administration (SQL & NoSQL)</div>
+          <div class="course-desc">Indexing, backups, replication, performance tuning and production-ready DB ops.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="Database Administration.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+        <!-- 10 VR/AR -->
+        <article class="course-card" data-course="Virtual & Augmented Reality">
+          <img src="images/VIRTUAL.avif" alt="VR and AR">
+          <div class="course-title">Virtual & Augmented Reality Development</div>
+          <div class="course-desc">Unity XR toolkit, ARKit/ARCore basics and building immersive prototypes for mobile and headset.</div>
+          <div class="course-actions">
+            <a class="btn-neon" href="VR_AR Development.html" target="_blank" rel="noopener">Open</a>
+            <a class="btn-ghost" href="#" onclick="return false">Preview</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading">What Our Students Say</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <img class="avatar" src="images/igbo_boy.jpg" alt="Student photo">
+          <p>"I completed the Cloud DevOps track and landed a junior SRE role within 2 months. The labs are realistic."</p>
+          <strong>— Chidi U.</strong>
+        </div>
+        <div class="testimonial">
+          <img class="avatar" src="images/hausa_girl.jpg" alt="Student photo">
+          <p>"Mentorship was the difference. I shipped my first portfolio piece and got freelance work immediately."</p>
+          <strong>— Aisha K.</strong>
+        </div>
+        <div class="testimonial">
+          <img class="avatar" src="images/youruba_boy.jpg" alt="Student photo">
+          <p>"The Ethical Hacking labs were hands-on and well scaffolded — I learned proper reporting and responsible disclosure."</p>
+          <strong>— Tunde O.</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h4>Do I need prior experience? <span class="toggle">+</span></h4>
+          <div class="answer">No. Many courses include beginner tracks. Advanced modules are available for experienced learners.</div>
+        </div>
+        <div class="faq-item">
+          <h4>How do I pay & what are the schedules? <span class="toggle">+</span></h4>
+          <div class="answer">We accept transfers and mobile payments. Schedules vary — message via WhatsApp for the current timetable.</div>
+        </div>
+        <div class="faq-item">
+          <h4>Are certificates provided? <span class="toggle">+</span></h4>
+          <div class="answer">Yes — we issue completion certificates and help prepare portfolios for employers.</div>
+        </div>
+      </div>
+    </section>
+    <!-- DOWNLOAD APP -->
+    <section id="download" aria-labelledby="download-heading">
+      <h2 id="download-heading">Download Our App</h2>
+      <p style="text-align:center;color:var(--muted)">Get lessons, assignments and messages on your phone. (App coming soon — these buttons are placeholders.)</p>
+      <div class="app-row" style="margin-top:18px">
+        <div class="app-card">
+          <img src="images/andriod_app.avif" alt="app screenshot">
+          <div class="app-links">
+            <strong>Android</strong>
+            <a href="#" class="btn-ghost" onclick="alert('Android app coming soon, Not available in your region')" style="font-weight: bold;">Download on Google Play</a>
+          </div>
+        </div>
+        <div class="app-card">
+          <img src="images/iphone_app.png" alt="app screenshot">
+          <div class="app-links">
+            <strong>iOS</strong>
+            <a href="#" class="btn-ghost" onclick="alert('iOS app coming soon, Not available in your region')" style="font-weight: bold;">Download on App Store</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMS & PRIVACY (quick inline sections) -->
+    <section id="legal" aria-labelledby="legal-heading">
+      <h2 id="legal-heading">Terms & Policies</h2>
+      <div class="legal" style="justify-content:center; display: flex; gap: 20px;">
+        <a href="#" class="btn-ghost" id="show-terms" style="font-weight: bold; color: inherit;">Terms & Conditions</a>
+        <a href="#" class="btn-ghost" id="show-privacy" style="font-weight: bold; color: inherit;">Privacy Policy</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact Us</h2>
+      <p style="color:var(--muted)">Questions about courses, schedules or partnerships? Message us directly — we respond fast, and will give you the information you need. Contact us via WhatsApp.</p>
+      <div style="margin-top:14px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a id="wh-home" class="btn-ghost" href="#" target="_blank" rel="noopener" style="background-color: #25D366; color: white; font-weight: bold; border-color: #25D366;">WhatsApp</a>
+        <a id="tg-home" class="btn-ghost telegram-link" href="#" target="_blank" rel="noopener" style="background-color: #0088cc; color: white; font-weight: bold; border-color: #0088cc;">Telegram</a>
+        <a href="mailto:emmanueltechworld933@gmail.com" class="btn-ghost" style="background-color: #EA4335; color: white; font-weight: bold; border-color: #EA4335;">Email Us</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer" role="contentinfo">
+      <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+      <strong>Emanuel's Tech World</strong>
+
+      <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+      <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+    </footer>
+
+  </div>
+
+  <!-- TERMS & PRIVACY MODALS (simple inline content) -->
+  <template id="terms-template">
+    <div style="padding:18px;max-width:720px">
+      <h3>Terms & Conditions</h3>
+      <p>Last updated: 2025-11-07</p>
+      <p>These terms describe the agreement between Emanuel's Tech World and learners using our courses. By enrolling you agree to follow rules and respect intellectual property. Payment and refund policies apply as described during checkout. Labs are for educational use only. Unauthorized access or illegal activity is strictly prohibited.</p>
+      <p>For full legal terms and refund policies contact support at emmanueltechworld933@gmail.com</p>
+    </div>
+  </template>
+
+  <template id="privacy-template">
+    <div style="padding:18px;max-width:720px">
+      <h3>Privacy Policy</h3>
+      <p>Last updated: 2025-11-07</p>
+      <p>We collect contact details and course progress to deliver learning and support. We never sell personal data. You can request deletion of your data by contacting emmanueltechworld933@gmail.com.</p>
+    </div>
+  </template>
+
+  <script>
+  // Small UI: reveal course cards when in viewport
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card').forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) card.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Terms & Privacy quick modal (very simple)
+  function openModal(contentHtml) {
+    const overlay = document.createElement('div');
+    overlay.style= 'position:fixed;inset:0;background:rgba(2,6,23,0.6);display:flex;align-items:center;justify-content:center;z-index:9999';
+    const panel = document.createElement('div');
+    panel.style='background:white;border-radius:12px;max-width:880px;width:92%;padding:20px;box-shadow:0 20px 60px rgba(2,6,23,0.4);';
+    panel.innerHTML = contentHtml + '<div style="text-align:right;margin-top:10px"><button id="modal-close" style="padding:8px 12px;border-radius:8px;border:none;background:#6a5acd;color:white;font-weight:700">Close</button></div>';
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    document.getElementById('modal-close').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  }
+
+  document.getElementById('show-terms').addEventListener('click', (e)=>{
+    e.preventDefault();
+    openModal(document.getElementById('terms-template').innerHTML);
+  });
+  document.getElementById('show-privacy').addEventListener('click',(e)=>{
+    e.preventDefault();
+    openModal(document.getElementById('privacy-template').innerHTML);
+  });
+  </script>
+
+</body>
+</html>

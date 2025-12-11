@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Robotics & IoT — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .alternative-ctas {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .alternative-ctas .btn-ghost {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">Robotics & IoT</h1>
+    <p class="hero-sub">Microcontrollers, sensors and cloud telemetry — build connected physical projects.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Beginner</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">8 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦32,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">4 Hardware Projects</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Robotics%20%26%20IoT%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20Robotics%20%26%20IoT%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20Robotics%20%26%20IoT%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20Robotics%20%26%20IoT%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/robotics.avif" alt="Robotics & IoT">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn Robotics & IoT?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🤖 Physical Computing</h4>
+        <p>Bridge the digital and physical worlds by programming devices that interact with real environments</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🌐 Connected Systems</h4>
+        <p>Build smart devices that communicate with cloud platforms and other connected systems</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 Industry 4.0</h4>
+        <p>Join the fourth industrial revolution with skills in automation, smart systems, and IoT</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🚀 Rapid Innovation</h4>
+        <p>Create prototypes and solutions for smart homes, agriculture, healthcare, and industrial automation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>This hands-on Robotics & IoT course teaches you to build connected physical systems from the ground up. You'll learn microcontroller programming, sensor integration, wireless communication, and cloud connectivity while building 4 real hardware projects that solve practical problems.</p>
+        
+        <div class="tools-section">
+          <h3>Technologies & Platforms</h3>
+          <div class="tools-list">
+            <span class="tool-tag">Arduino</span>
+            <span class="tool-tag">Raspberry Pi</span>
+            <span class="tool-tag">ESP32</span>
+            <span class="tool-tag">C++ Programming</span>
+            <span class="tool-tag">Python</span>
+            <span class="tool-tag">MQTT</span>
+            <span class="tool-tag">Node-RED</span>
+            <span class="tool-tag">Cloud Platforms</span>
+          </div>
+        </div>
+
+        <h3>Projects You'll Build</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>🏠 Smart Home System</h4>
+            <p>Automated lighting, temperature monitoring, and remote control system</p>
+          </div>
+          <div class="project-item">
+            <h4>🌱 Smart Agriculture</h4>
+            <p>Soil moisture monitoring and automated irrigation system</p>
+          </div>
+          <div class="project-item">
+            <h4>📊 Environmental Monitor</h4>
+            <p>Air quality, temperature, and humidity tracking with cloud dashboard</p>
+          </div>
+          <div class="project-item">
+            <h4>🤖 Basic Robot</h4>
+            <p>Line-following or obstacle-avoidance robot with sensors</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>Electronics enthusiasts</li>
+            <li>Software developers expanding to hardware</li>
+            <li>Engineering students</li>
+            <li>Innovators and makers</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>Basic programming knowledge helpful</li>
+            <li>No electronics experience required</li>
+            <li>Logical problem-solving mindset</li>
+            <li>Curiosity about how things work</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>IoT Developer</li>
+            <li>Embedded Systems Engineer</li>
+            <li>Robotics Technician</li>
+            <li>Automation Specialist</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1-2</div>
+        <h4>Electronics Foundation</h4>
+        <ul>
+          <li>Basic electronics and circuits</li>
+          <li>Microcontroller fundamentals</li>
+          <li>Arduino programming with C++</li>
+          <li>Digital and analog I/O</li>
+          <li><strong>Project:</strong> Basic sensor circuit</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 3-4</div>
+        <h4>Sensors & Actuators</h4>
+        <ul>
+          <li>Temperature and humidity sensors</li>
+          <li>Motion and proximity detection</li>
+          <li>Motor control and servos</li>
+          <li>Display interfaces</li>
+          <li><strong>Project:</strong> Environmental monitor</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 5-6</div>
+        <h4>Wireless Communication</h4>
+        <ul>
+          <li>Wi-Fi and Bluetooth connectivity</li>
+          <li>ESP32 microcontroller programming</li>
+          <li>MQTT protocol for IoT</li>
+          <li>Raspberry Pi setup</li>
+          <li><strong>Project:</strong> Smart home system</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 7</div>
+        <h4>Cloud Integration</h4>
+        <ul>
+          <li>Cloud platform APIs</li>
+          <li>Data visualization dashboards</li>
+          <li>Remote control systems</li>
+          <li>Node-RED automation</li>
+          <li><strong>Project:</strong> Cloud-connected device</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 8</div>
+        <h4>Robotics & Advanced Projects</h4>
+        <ul>
+          <li>Robot mechanics and movement</li>
+          <li>Sensor fusion and navigation</li>
+          <li>Project integration</li>
+          <li>Career preparation</li>
+          <li><strong>Final:</strong> Complete IoT solution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Will hardware be provided or do I need to buy components? <span class="toggle">+</span></h4>
+        <div class="answer">We provide detailed component lists and recommendations for affordable starter kits (approximately ₦15,000-₦25,000). Instructor kits are available for purchase, or you can source components locally following our guidance.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Do I need prior electronics experience? <span class="toggle">+</span></h4>
+        <div class="answer">No prior electronics experience is required! We start from absolute basics - teaching circuit fundamentals, component identification, and safe prototyping practices.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What programming languages will I learn? <span class="toggle">+</span></h4>
+        <div class="answer">Primarily C++ for Arduino programming and Python for Raspberry Pi. We also cover basic circuit design and electronics principles that don't require extensive coding.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Can I get a job with these skills? <span class="toggle">+</span></h4>
+        <div class="answer">Absolutely! IoT developers earn ₦200,000-₦450,000 monthly. The demand for professionals who can bridge hardware and software is rapidly growing across industries.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What if I have problems with my hardware during the course? <span class="toggle">+</span></h4>
+        <div class="answer">We provide comprehensive troubleshooting support, component replacement guidance, and virtual simulation options for those facing hardware challenges.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Are the projects suitable for complete beginners? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! Projects are designed with progressive complexity. We start with simple circuits and gradually build up to complete IoT systems, ensuring everyone can follow along.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-robotics.jpg" alt="Robotics & IoT Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Embedded Systems Expert & Instructor</p>
+        <p>With 6+ years in embedded systems and IoT development, Emmanuel has designed smart city solutions, industrial automation systems, and educational robotics platforms. He specializes in making complex hardware concepts accessible to beginners.</p>
+        <div class="instructor-stats">
+          <div class="stat">6+ Years Experience</div>
+          <div class="stat">50+ IoT Projects</div>
+          <div class="stat">120+ Students Trained</div>
+          <div class="stat">3 Patent Applications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Building the Future</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Robotics & IoT Course</h3>
+        <div class="price-main">₦32,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 8 weeks of live training</div>
+        <div class="feature-item">✅ 4 hands-on hardware projects</div>
+        <div class="feature-item">✅ Arduino & Raspberry Pi training</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Dedicated maker community</div>
+        <div class="feature-item">✅ 1:1 mentorship sessions</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ Component sourcing guide</div>
+        <div class="feature-item">✅ Project documentation</div>
+        <div class="feature-item">✅ Portfolio development</div>
+        <div class="feature-item">✅ Job referral program</div>
+      </div>
+      
+      <div class="pricing-cta">
+        <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Robotics%20%26%20IoT%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+          <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+        </a>
+        <div class="alternative-ctas">
+          <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20Robotics%20%26%20IoT%20course" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+          </a>
+          <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20Robotics%20%26%20IoT%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20Robotics%20%26%20IoT%20course.%0A%0AThank you!" target="_blank">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+        </div>
+        <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- Advanced AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Robotics Assistant</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        🤖 Hello! I'm your advanced Robotics & IoT assistant. I can help you with:
+        <br>• Course curriculum & hardware projects
+        <br>• Component selection & sourcing in Nigeria
+        <br>• Career paths in IoT and embedded systems
+        <br>• Technical specifications & requirements
+        <br>• Project troubleshooting & best practices
+        <br><br>What would you like to know about building connected physical systems?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about robotics, IoT, or hardware...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Advanced AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    // Basic course info
+    'hello': '🤖 Hello! Ready to build the future with Robotics & IoT? What would you like to know about our course?',
+    'hi': '👋 Hi there! I specialize in robotics, IoT, and embedded systems. How can I assist you today?',
+    'price': '💰 The Robotics & IoT course is ₦32,000 with lifetime access, 8 weeks of training, and 4 hardware projects.',
+    'duration': '⏱️ This is an 8-week intensive course with 6-8 hours weekly commitment including live labs and project work.',
+    
+    // Technical details
+    'what will i learn': '🎯 You\'ll learn: Arduino/Raspberry Pi programming, sensor integration, wireless communication (Wi-Fi/Bluetooth), cloud connectivity, robotics fundamentals, and build 4 complete IoT projects.',
+    'hardware': '🛠️ Required components: Arduino Starter Kit (~₦8,000), ESP32 board (~₦3,500), sensors package (~₦6,000), Raspberry Pi (optional). Total: ~₦17,500-₦25,000 for all components.',
+    'programming': '👨‍💻 Primary languages: C++ for Arduino, Python for Raspberry Pi. We start from basics - no prior embedded programming experience needed.',
+    'projects': '🔧 You\'ll build: Smart Home System, Smart Agriculture Monitor, Environmental Tracker, and Basic Robot - all with real-world applications.',
+    
+    // Career & opportunities
+    'career': '💼 IoT professionals earn ₦200,000-₦450,000 monthly. Roles: IoT Developer, Embedded Systems Engineer, Automation Specialist, Robotics Technician.',
+    'salary': '💰 Entry-level: ₦200,000+, Mid-level: ₦300,000+, Senior: ₦450,000+. High demand in agriculture, manufacturing, healthcare, and smart cities.',
+    'freelance': '💸 Yes! IoT freelancers earn $30-$80/hour. Common projects: smart home automation, industrial monitoring, custom sensor systems.',
+    
+    // Technical specifications
+    'arduino': '⚡ Arduino Uno R3 recommended. Cost: ~₦4,000-₦6,000 locally. We cover programming, sensor interfacing, and project development.',
+    'raspberry pi': '🍓 Raspberry Pi 3/4 recommended but optional. Cost: ~₦25,000-₦35,000. Used for advanced projects and cloud integration.',
+    'esp32': '📡 ESP32 is essential for wireless projects. Cost: ~₦3,000-₦4,500. We use it for Wi-Fi/Bluetooth connectivity and IoT applications.',
+    'sensors': '🌡️ Essential sensors: DHT11 (temp/humidity), HC-SR04 (ultrasonic), PIR (motion), LDR (light), soil moisture. Total sensor kit: ~₦6,000.',
+    
+    // Learning path
+    'beginner': '🌟 Perfect for complete beginners! No electronics or programming experience required. We start from absolute basics.',
+    'electronics': '🔌 No prior electronics knowledge needed! We teach circuit fundamentals, component identification, and safe prototyping practices.',
+    'programming experience': '💻 Basic programming knowledge helpful but not required. We teach C++ and Python from scratch for embedded systems.',
+    
+    // Project details
+    'smart home': '🏠 Project includes: Automated lighting, temperature control, remote monitoring via mobile app, and energy optimization features.',
+    'agriculture': '🌱 Smart farm project: Soil moisture monitoring, automated irrigation, crop health tracking, and remote farm management.',
+    'environmental': '🌍 Environmental monitor: Air quality index, temperature, humidity, particulate matter tracking with cloud dashboard.',
+    'robot': '🤖 Basic robot: Line-following or obstacle-avoidance capabilities using ultrasonic sensors and motor control systems.',
+    
+    // Support & resources
+    'components nigeria': '🛍️ Component sources: Computer Village Ikeja, online stores (Jumia, Konga), local electronics shops. We provide specific vendor recommendations.',
+    'troubleshooting': '🔧 Comprehensive support: Circuit debugging, code troubleshooting, component replacement guidance, and virtual simulation options.',
+    'certificate': '📜 You receive a Robotics & IoT Specialist certificate plus guidance for industry certifications.',
+    'job support': '🤝 We provide: Portfolio development, job referrals, interview preparation, and 6 months of career support.',
+    
+    // Advanced topics
+    'cloud': '☁️ We integrate with AWS IoT, Google Cloud IoT, and Blynk platforms for data visualization and remote control.',
+    'wireless': '📶 Covered protocols: Wi-Fi, Bluetooth, MQTT for IoT communication, and basic LoRa for long-range applications.',
+    'ai ml': '🧠 We introduce AI/ML concepts for IoT: Predictive maintenance, anomaly detection, and smart decision-making in projects.',
+    '3d printing': '🖨️ Basic 3D design introduced for custom enclosures. Advanced 3D printing covered in maker workshops.',
+    
+    // Enrollment
+    'enroll': '📱 You can enroll via WhatsApp above, or contact us for component bundles and payment plans.',
+    'thank you': '😊 You\'re welcome! Excited to see what you\'ll build! Feel free to ask more technical questions.',
+    'thanks': '🚀 Happy to help! The future of connected devices awaits - let me know if you need more details!'
+  };
+
+  // Advanced response logic with context awareness
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    let context = '';
+    
+    // Extract context from previous messages
+    const lastMessages = Array.from(aiMessages.querySelectorAll('.ai-user')).slice(-3);
+    lastMessages.forEach(msg => {
+      context += ' ' + msg.textContent.toLowerCase();
+    });
+
+    // Advanced context-aware matching
+    if ((lowerQuestion.includes('buy') || lowerQuestion.includes('purchase') || lowerQuestion.includes('get') || lowerQuestion.includes('where')) && 
+        (lowerQuestion.includes('component') || lowerQuestion.includes('hardware') || lowerQuestion.includes('kit') || lowerQuestion.includes('parts'))) {
+      return aiResponses['components nigeria'];
+    }
+    
+    if ((lowerQuestion.includes('cost') || lowerQuestion.includes('price') || lowerQuestion.includes('money')) && 
+        (lowerQuestion.includes('component') || lowerQuestion.includes('hardware') || lowerQuestion.includes('kit'))) {
+      return aiResponses['hardware'];
+    }
+    
+    if (lowerQuestion.includes('arduino') && !lowerQuestion.includes('vs')) {
+      return aiResponses['arduino'];
+    }
+    
+    if (lowerQuestion.includes('raspberry') || lowerQuestion.includes('pi')) {
+      return aiResponses['raspberry pi'];
+    }
+    
+    if (lowerQuestion.includes('esp32') || lowerQuestion.includes('esp-32')) {
+      return aiResponses['esp32'];
+    }
+    
+    if ((lowerQuestion.includes('sensor') || lowerQuestion.includes('detect') || lowerQuestion.includes('measure')) && 
+        !lowerQuestion.includes('software')) {
+      return aiResponses['sensors'];
+    }
+    
+    if ((lowerQuestion.includes('home') || lowerQuestion.includes('house') || lowerQuestion.includes('automation')) && 
+        context.includes('project')) {
+      return aiResponses['smart home'];
+    }
+    
+    if ((lowerQuestion.includes('farm') || lowerQuestion.includes('agriculture') || lowerQuestion.includes('crop') || lowerQuestion.includes('soil')) && 
+        context.includes('project')) {
+      return aiResponses['agriculture'];
+    }
+    
+    if ((lowerQuestion.includes('environment') || lowerQuestion.includes('air') || lowerQuestion.includes('weather') || lowerQuestion.includes('pollution')) && 
+        context.includes('project')) {
+      return aiResponses['environmental'];
+    }
+    
+    if ((lowerQuestion.includes('robot') || lowerQuestion.includes('motor') || lowerQuestion.includes('move')) && 
+        context.includes('project')) {
+      return aiResponses['robot'];
+    }
+    
+    if (lowerQuestion.includes('cloud') || lowerQuestion.includes('aws') || lowerQuestion.includes('google cloud') || lowerQuestion.includes('online')) {
+      return aiResponses['cloud'];
+    }
+    
+    if (lowerQuestion.includes('wireless') || lowerQuestion.includes('wifi') || lowerQuestion.includes('bluetooth') || lowerQuestion.includes('mqtt')) {
+      return aiResponses['wireless'];
+    }
+    
+    if (lowerQuestion.includes('ai') || lowerQuestion.includes('machine learning') || lowerQuestion.includes('ml') || lowerQuestion.includes('artificial')) {
+      return aiResponses['ai ml'];
+    }
+    
+    if (lowerQuestion.includes('3d') || lowerQuestion.includes('print') || lowerQuestion.includes('design') || lowerQuestion.includes('cad')) {
+      return aiResponses['3d printing'];
+    }
+    
+    if (lowerQuestion.includes('trouble') || lowerQuestion.includes('problem') || lowerQuestion.includes('help') || lowerQuestion.includes('stuck')) {
+      return aiResponses['troubleshooting'];
+    }
+    
+    if (lowerQuestion.includes('computer') || lowerQuestion.includes('laptop') || lowerQuestion.includes('spec')) {
+      return "For Robotics & IoT, we recommend: Windows/Mac/Linux OS, 8GB+ RAM, USB ports for programming, and basic internet connection. No special GPU required.";
+    }
+    
+    // Standard keyword matching
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    // Smart fallback based on context
+    if (context.includes('project') || lowerQuestion.includes('build') || lowerQuestion.includes('make')) {
+      return "I can provide detailed information about our 4 hardware projects: Smart Home System, Smart Agriculture Monitor, Environmental Tracker, and Basic Robot. Which project interests you most?";
+    }
+    
+    if (context.includes('career') || lowerQuestion.includes('job') || lowerQuestion.includes('work')) {
+      return "I can discuss IoT career paths, salary expectations (₦200,000-₦450,000 monthly), job opportunities, and freelance possibilities. What specific career aspect would you like to explore?";
+    }
+    
+    if (context.includes('hardware') || lowerQuestion.includes('component') || lowerQuestion.includes('buy')) {
+      return "I can help with component selection, local sourcing in Nigeria (Computer Village, online stores), cost estimates (~₦17,500-₦25,000), and alternative options. What specific hardware question do you have?";
+    }
+    
+    return "🤖 I specialize in Robotics & IoT topics including: course curriculum, hardware components, project details, career opportunities, technical specifications, and local sourcing in Nigeria. What specific area would you like me to elaborate on?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 600);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Enhanced animations
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card, .benefit-card, .syllabus-item').forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) element.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Video Editing & Motion Graphics — Emmanuel's Tech World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .course-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+      padding: 20px;
+      background: var(--panel);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .meta-item {
+      text-align: center;
+      padding: 10px;
+    }
+    .meta-item strong {
+      display: block;
+      font-size: 1.1em;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    .meta-value {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .price-highlight {
+      font-size: 1.4em;
+      font-weight: 800;
+      color: var(--neon);
+    }
+    
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 25px !important;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+    }
+    .btn-telegram {
+      background: #0088cc;
+      color: white;
+    }
+    .btn-email {
+      background: #EA4335;
+      color: white;
+    }
+    .btn-ghost {
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .price-main {
+      font-size: 2.5em;
+      font-weight: 800;
+      color: var(--neon);
+      margin: 10px 0;
+    }
+    .price-note {
+      color: var(--text-light);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin: 25px 0;
+    }
+    .feature-item {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-cta {
+      margin-top: 30px;
+    }
+    .btn-neon.large {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      width: 100%;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .alternative-ctas {
+      display: flex;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .alternative-ctas .btn-ghost {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .guarantee {
+      font-size: 0.9em;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    
+    .ai-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .ai-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+    .ai-toggle:hover {
+      transform: scale(1.1);
+    }
+    .ai-chatbox {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 350px;
+      height: 450px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      display: none;
+      flex-direction: column;
+      border: 1px solid #e1e5e9;
+    }
+    .ai-chatbox.open {
+      display: flex;
+    }
+    .ai-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px 15px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f8f9fa;
+    }
+    .ai-message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 85%;
+    }
+    .ai-bot {
+      background: white;
+      border: 1px solid #e1e5e9;
+      margin-right: auto;
+    }
+    .ai-user {
+      background: #667eea;
+      color: white;
+      margin-left: auto;
+    }
+    .ai-input {
+      padding: 15px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+    }
+    .ai-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #e1e5e9;
+      border-radius: 25px;
+      outline: none;
+    }
+    .ai-send {
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .benefit-card {
+      background: var(--panel);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+<header class="site-header" role="banner"> 
+  <div class="brand"><img src="images/logos.png" alt="Logo" class="site-logo"/><div class="brand-text"><div class="brand-title">Emmanuel's Tech World</div><div class="brand-sub">Practical tech courses • Projects • Career-ready</div></div></div>
+  <nav class="main-nav"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="#contact">Contact</a><button class="btn-cta" onclick="window.open('courses.html','_blank')">Explore Courses</button></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-left">
+    <h1 id="course-title">Video Editing & Motion Graphics</h1>
+    <p class="hero-sub">Premiere & After Effects workflows, color grading and motion design for social and portfolio work.</p>
+    
+    <div class="course-meta">
+      <div class="meta-item">
+        <strong>Level:</strong>
+        <span class="meta-value">Beginner</span>
+      </div>
+      <div class="meta-item">
+        <strong>Duration:</strong>
+        <span class="meta-value">6 weeks</span>
+      </div>
+      <div class="meta-item">
+        <strong>Price:</strong>
+        <span class="meta-value price-highlight">₦20,000</span>
+      </div>
+      <div class="meta-item">
+        <strong>Format:</strong>
+        <span class="meta-value">Live Online + Recordings</span>
+      </div>
+      <div class="meta-item">
+        <strong>Projects:</strong>
+        <span class="meta-value">3 Portfolio Pieces</span>
+      </div>
+    </div>
+    
+    <div class="hero-ctas">
+      <a class="btn-neon btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Video%20Editing%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+        <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+      </a>
+      <a class="btn-neon btn-telegram" href="https://t.me/EmmanuelTechworld?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20Video%20Editing%20course" target="_blank">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a class="btn-neon btn-email" href="mailto:emmanueltechworld933@gmail.com?subject=Enrollment:%20Video%20Editing%20Course&body=Hi%20Emmanuel,%0A%0AI%20would%20like%20to%20enroll%20in%20your%20Video%20Editing%20course.%20Please%20send%20me%20the%20enrollment%20details.%0A%0AThank you!" target="_blank">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+      <a class="btn-ghost" href="#syllabus">
+        <i class="fas fa-book"></i> View Syllabus
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img class="hero-ill" src="images/VIDEO EDITING.avif" alt="Video Editing">
+  </figure>
+</section>
+
+<section class="course-benefits">
+  <div class="container">
+    <h2>Why Learn Video Editing?</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🎬 High Demand</h4>
+        <p>Every business needs video content - from social media to corporate presentations</p>
+      </div>
+      <div class="benefit-card">
+        <h4>💼 Creative Careers</h4>
+        <p>Work as video editor, motion designer, or content creator across multiple industries</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🚀 Quick Results</h4>
+        <p>See immediate improvement in your editing skills with practical, project-based learning</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🌐 Global Opportunities</h4>
+        <p>Work remotely for international clients or build your own content creation business</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Course Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-content">
+        <p>Master professional video editing and motion graphics using industry-standard tools. Learn Adobe Premiere Pro for editing and After Effects for motion design, color grading, and visual effects. Create compelling video content for social media, YouTube, corporate presentations, and personal projects.</p>
+        
+        <div class="tools-section">
+          <h3>Software & Tools</h3>
+          <div class="tools-list">
+            <span class="tool-tag">Adobe Premiere Pro</span>
+            <span class="tool-tag">Adobe After Effects</span>
+            <span class="tool-tag">Adobe Audition</span>
+            <span class="tool-tag">DaVinci Resolve</span>
+            <span class="tool-tag">Color Grading</span>
+            <span class="tool-tag">Motion Graphics</span>
+            <span class="tool-tag">Visual Effects</span>
+            <span class="tool-tag">Audio Mixing</span>
+          </div>
+        </div>
+
+        <h3>Projects You'll Create</h3>
+        <div class="projects-showcase">
+          <div class="project-item">
+            <h4>🎥 Social Media Ad</h4>
+            <p>Professional advertisement with motion graphics for Instagram/Facebook</p>
+          </div>
+          <div class="project-item">
+            <h4>📹 YouTube Video</h4>
+            <p>Complete video with editing, color grading, and engaging motion titles</p>
+          </div>
+          <div class="project-item">
+            <h4>🎞️ Corporate Presentation</h4>
+            <p>Business video with professional transitions, lower thirds, and animations</p>
+          </div>
+        </div>
+      </div>
+      
+      <aside class="course-sidebar">
+        <div class="sidebar-card">
+          <h4>🎯 Perfect For</h4>
+          <ul>
+            <li>Content creators and YouTubers</li>
+            <li>Marketing professionals</li>
+            <li>Social media managers</li>
+            <li>Creative enthusiasts</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>📋 Prerequisites</h4>
+          <ul>
+            <li>Basic computer skills</li>
+            <li>No prior editing experience needed</li>
+            <li>Creative eye and attention to detail</li>
+            <li>Access to computer for software</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h4>💼 Career Outcomes</h4>
+          <ul>
+            <li>Video Editor</li>
+            <li>Motion Graphics Designer</li>
+            <li>Content Creator</li>
+            <li>Social Media Video Specialist</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="syllabus">
+  <div class="container">
+    <h2>Detailed Syllabus</h2>
+    <div class="syllabus-timeline">
+      <div class="syllabus-item">
+        <div class="week-tag">Week 1</div>
+        <h4>Premiere Pro Fundamentals</h4>
+        <ul>
+          <li>Interface and workspace setup</li>
+          <li>Importing and organizing footage</li>
+          <li>Basic editing techniques and shortcuts</li>
+          <li>Audio adjustment and mixing</li>
+          <li><strong>Project:</strong> Simple social media clip</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 2</div>
+        <h4>Advanced Editing Techniques</h4>
+        <ul>
+          <li>Multi-camera editing</li>
+          <li>Advanced transitions and effects</li>
+          <li>Color correction basics</li>
+          <li>Export settings for different platforms</li>
+          <li><strong>Project:</strong> YouTube-style video</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 3</div>
+        <h4>After Effects Introduction</h4>
+        <ul>
+          <li>Motion graphics fundamentals</li>
+          <li>Keyframe animation</li>
+          <li>Text animation and titles</li>
+          <li>Basic visual effects</li>
+          <li><strong>Project:</strong> Animated titles sequence</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 4</div>
+        <h4>Color Grading & Audio</h4>
+        <ul>
+          <li>Professional color grading techniques</li>
+          <li>LUTs and color presets</li>
+          <li>Audio cleanup and enhancement</li>
+          <li>Sound design basics</li>
+          <li><strong>Project:</strong> Color graded commercial</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 5</div>
+        <h4>Advanced Motion Graphics</h4>
+        <ul>
+          <li>Shape layers and vector graphics</li>
+          <li>Motion tracking and stabilization</li>
+          <li>3D space and camera movement</li>
+          <li>Advanced effects and plugins</li>
+          <li><strong>Project:</strong> Complex motion graphic</li>
+        </ul>
+      </div>
+      
+      <div class="syllabus-item">
+        <div class="week-tag">Week 6</div>
+        <h4>Portfolio & Career Development</h4>
+        <ul>
+          <li>Building your video portfolio</li>
+          <li>Client work and freelancing</li>
+          <li>Pricing your services</li>
+          <li>Career path development</li>
+          <li><strong>Final:</strong> Portfolio showcase project</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="course-faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h4>Which software will we use and is it provided? <span class="toggle">+</span></h4>
+        <div class="answer">We primarily use Adobe Premiere Pro and After Effects. Students need to purchase Adobe Creative Cloud subscription (~₦8,000 monthly). We also cover free alternatives like DaVinci Resolve for those on a budget.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Do I need an expensive computer for video editing? <span class="toggle">+</span></h4>
+        <div class="answer">A mid-range computer with 8GB+ RAM and dedicated graphics card is recommended. We provide optimization tips for slower machines and work with proxy files for smooth editing.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Can I start freelancing after this 6-week course? <span class="toggle">+</span></h4>
+        <div class="answer">Absolutely! Many students start taking small freelance projects during the course. We teach client acquisition, pricing, and portfolio building specifically for freelance video editors.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What kind of computer specs do I need? <span class="toggle">+</span></h4>
+        <div class="answer">Recommended: Windows 10/11 or macOS, Intel i5/Ryzen 5 processor, 16GB RAM, 4GB dedicated GPU, 500GB SSD. We provide optimization for lower-spec machines.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>Are there free alternatives to Adobe software? <span class="toggle">+</span></h4>
+        <div class="answer">Yes! DaVinci Resolve (free version) is excellent for editing and color grading. We cover both Adobe and free alternatives to ensure accessibility for all students.</div>
+      </div>
+      
+      <div class="faq-item">
+        <h4>What kind of income can I expect as a video editor? <span class="toggle">+</span></h4>
+        <div class="answer">Beginner freelancers earn ₦80,000-₦150,000 monthly. Experienced editors make ₦200,000-₦400,000. Corporate and agency positions offer ₦180,000-₦350,000 monthly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor-section">
+  <div class="container">
+    <h2>About Your Instructor</h2>
+    <div class="instructor-profile">
+      <div class="instructor-image">
+        <img src="images/instructor-video.jpg" alt="Video Editing Instructor">
+      </div>
+      <div class="instructor-info">
+        <h3>Emmanuel O.B.I</h3>
+        <p class="instructor-title">Professional Video Editor & Motion Designer</p>
+        <p>With 5+ years in video production, Emmanuel has worked with major brands, created content for television, and built successful freelance video editing businesses. He specializes in making complex editing techniques accessible to beginners.</p>
+        <div class="instructor-stats">
+          <div class="stat">5+ Years Experience</div>
+          <div class="stat">200+ Video Projects</div>
+          <div class="stat">100+ Students Trained</div>
+          <div class="stat">Brand Collaborations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="enroll-section">
+  <div class="container">
+    <h2>Start Your Video Editing Career</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <h3>Video Editing Course</h3>
+        <div class="price-main">₦20,000</div>
+        <p class="price-note">One-time payment • Lifetime access</p>
+      </div>
+      
+      <div class="pricing-features">
+        <div class="feature-item">✅ 6 weeks of live training</div>
+        <div class="feature-item">✅ 3 portfolio video projects</div>
+        <div class="feature-item">✅ Premiere Pro & After Effects</div>
+        <div class="feature-item">✅ Lifetime access to recordings</div>
+        <div class="feature-item">✅ Dedicated creative community</div>
+        <div class="feature-item">✅ 1:1 mentorship sessions</div>
+        <div class="feature-item">✅ Certificate of completion</div>
+        <div class="feature-item">✅ Career guidance & job support</div>
+        <div class="feature-item">✅ Asset library access</div>
+        <div class="feature-item">✅ Freelance business guidance</div>
+        <div class="feature-item">✅ Portfolio review</div>
+        <div class="feature-item">✅ Job referral program</div>
+      </div>
+      
+      <div class="pricing-cta">
+        <a class="btn-neon large btn-whatsapp" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20want%20to%20enroll%20in%20your%20Video%20Editing%20course.%20Please%20guide%20me%20through%20the%20process." target="_blank">
+          <i class="fab fa-whatsapp"></i> Enroll via WhatsApp
+        </a>
+        <div class="alternative-ctas">
+          <a class="btn-ghost" href="https://wa.me/2349118244794?text=Hi%20Emmanuel!%20I%20have%20a%20question%20about%20your%20Video%20Editing%20course" target="_blank">
+            <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+          </a>
+          <a class="btn-ghost" href="mailto:emmanueltechworld933@gmail.com?subject=Question:%20Video%20Editing%20Course&body=Hi%20Emmanuel,%0A%0AI%20have%20a%20question%20about%20your%20Video%20Editing%20course.%0A%0AThank you!" target="_blank">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
+        </div>
+        <p class="guarantee">🔒 7-day money-back guarantee • 💳 Payment plans available</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <img src="images/logos.png" alt="Emmanuel's Tech World Logo" class="site-logo" />
+  <strong>Emanuel's Tech World</strong>
+
+  <div class="small" style="margin-top:8px">© 2015–2025 Emanuel O.B.I — Emanuel</div>
+  <div class="small" style="margin-top:6px">Built with care — powered by projects.</div>
+</footer>
+</div>
+
+<!-- Advanced AI Assistant -->
+<div class="ai-assistant">
+  <button class="ai-toggle" id="aiToggle">
+    <i class="fas fa-robot"></i>
+  </button>
+  <div class="ai-chatbox" id="aiChatbox">
+    <div class="ai-header">
+      <i class="fas fa-robot"></i>
+      <span>Video Editing Expert</span>
+    </div>
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message ai-bot">
+        🎬 Welcome! I'm your advanced Video Editing assistant. I can help with:
+        <br>• Software recommendations & alternatives
+        <br>• Computer specifications & optimization
+        <br>• Career paths & income expectations
+        <br>• Project workflows & techniques
+        <br>• Freelance business building
+        <br>• Portfolio development
+        <br><br>What would you like to know about video editing?
+      </div>
+    </div>
+    <div class="ai-input">
+      <input type="text" id="aiInput" placeholder="Ask about video editing, software, or career...">
+      <button class="ai-send" id="aiSend">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // FAQ toggles
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Advanced AI Assistant functionality
+  const aiToggle = document.getElementById('aiToggle');
+  const aiChatbox = document.getElementById('aiChatbox');
+  const aiMessages = document.getElementById('aiMessages');
+  const aiInput = document.getElementById('aiInput');
+  const aiSend = document.getElementById('aiSend');
+
+  aiToggle.addEventListener('click', () => {
+    aiChatbox.classList.toggle('open');
+  });
+
+  const aiResponses = {
+    // Basic course info
+    'hello': '🎬 Hello! Ready to create amazing videos? What would you like to know about our Video Editing course?',
+    'hi': '👋 Hi there! I specialize in video editing, motion graphics, and creative careers. How can I assist you?',
+    'price': '💰 The Video Editing course is ₦20,000 with lifetime access, 6 weeks of training, and 3 portfolio projects.',
+    'duration': '⏱️ This is a 6-week intensive course with 5-7 hours weekly commitment including live sessions and project work.',
+    
+    // Software & tools
+    'what will i learn': '🎯 You\'ll learn: Premiere Pro editing, After Effects motion graphics, color grading, audio mixing, visual effects, and professional workflow techniques.',
+    'software': '🛠️ Primary software: Adobe Premiere Pro & After Effects. Cost: Adobe Creative Cloud ~₦8,000 monthly. Free alternative: DaVinci Resolve (excellent for color grading).',
+    'premiere pro': '✂️ Adobe Premiere Pro: Industry standard for video editing. We cover timeline editing, effects, transitions, multi-cam, and professional workflows.',
+    'after effects': '🎨 Adobe After Effects: For motion graphics and visual effects. We teach animation, tracking, compositing, and dynamic graphics creation.',
+    'davinci resolve': '🎨 DaVinci Resolve: Free professional alternative. Excellent for color grading and basic editing. We cover both Adobe and Resolve workflows.',
+    'free software': '💸 Free alternatives: DaVinci Resolve (full editing suite), Shotcut (basic editing), Blender (3D & VFX). We provide tutorials for all options.',
+    
+    // Technical requirements
+    'computer': '💻 Recommended specs: Windows 10/11 or macOS, Intel i5/Ryzen 5+, 16GB RAM, 4GB GPU, 500GB SSD. Optimization tips provided for lower specs.',
+    'specs': '⚙️ Minimum: 8GB RAM, 2GB GPU, i3 processor. Recommended: 16GB RAM, 4GB+ GPU, SSD storage. We teach proxy workflows for smooth editing.',
+    'mac windows': '🖥️ Both platforms work! Mac: Better optimization for video apps. Windows: More hardware options. We support both with specific optimization guides.',
+    
+    // Career & income
+    'career': '💼 Video editors earn ₦80,000-₦400,000 monthly. Roles: Video Editor, Motion Designer, Content Creator, Social Media Specialist, Freelancer.',
+    'salary': '💰 Beginner: ₦80,000-₦150,000, Intermediate: ₦150,000-₦250,000, Senior: ₦250,000-₦400,000. Corporate positions: ₦180,000-₦350,000.',
+    'freelance': '💸 Freelance rates: ₦5,000-₦15,000 per minute of edited video. Social media clips: ₦3,000-₦8,000. Corporate videos: ₦20,000-₦100,000+ per project.',
+    'youtube': '📹 YouTube editing: Basic edits ₦3,000-₦8,000 per video. Advanced edits with graphics: ₦10,000-₦25,000. Regular clients: ₦50,000-₦150,000 monthly.',
+    
+    // Projects & portfolio
+    'projects': '🔧 You\'ll create: Social Media Ad (motion graphics), YouTube Video (editing & grading), Corporate Presentation (professional workflow).',
+    'portfolio': '📁 Essential portfolio pieces: 1-minute commercial, YouTube video, motion graphic, color graded footage. We help build your complete portfolio.',
+    'social media': '📱 Social media editing: Short formats (15-60s), attention-grabbing visuals, platform optimization (Instagram, TikTok, Facebook).',
+    
+    // Learning path
+    'beginner': '🌟 Perfect for complete beginners! No prior editing experience needed. We start from software installation and basic cutting.',
+    'experience': '🎓 All levels welcome! Beginners learn fundamentals, intermediates advance skills, experienced editors learn professional workflows.',
+    'time commitment': '⏰ 5-7 hours weekly: 2 live sessions (4 hours), project work (2-3 hours), community engagement. Flexible schedule with recordings.',
+    
+    // Business & clients
+    'clients': '🤝 Finding clients: Social media showcasing, freelance platforms (Upwork, Fiverr), local businesses, content creators, referrals.',
+    'pricing': '💵 Pricing strategy: Per minute (₦5k-₦15k), per project (₦20k-₦100k+), monthly retainers (₦80k-₦300k). We provide pricing calculators.',
+    'contracts': '📝 Business essentials: Client contracts, payment terms (50% upfront), revision policies, delivery timelines. Templates provided.',
+    
+    // Advanced techniques
+    'color grading': '🎨 Color grading: Professional looks, skin tones, mood setting, LUTs creation. We use Premiere Lumetri and DaVinci Resolve.',
+    'motion graphics': '✨ Motion graphics: Animated logos, text animations, infographics, complex compositions. After Effects with plugins.',
+    'audio': '🎧 Audio mixing: Noise reduction, EQ, compression, sound design, voiceover cleanup. Adobe Audition and Premiere audio workspace.',
+    'visual effects': '🌟 VFX: Green screen, motion tracking, compositing, particle effects. After Effects with built-in and third-party effects.',
+    
+    // Support & resources
+    'assets': '📚 Provided assets: Stock footage, music library, sound effects, templates, LUTs, transition packs, plugin recommendations.',
+    'community': '👥 Active community: Peer feedback, collaboration opportunities, job postings, resource sharing, ongoing support.',
+    'certificate': '📜 Video Editing Specialist certificate plus guidance for Adobe Certified Professional certification.',
+    'job support': '🤝 Career services: Portfolio review, client acquisition strategies, interview preparation, job referrals for 6 months.',
+    
+    // Enrollment
+    'enroll': '📱 Enroll via WhatsApp above, or contact us for software bundle deals and payment plans.',
+    'thank you': '😊 You\'re welcome! Can\'t wait to see the amazing videos you\'ll create!',
+    'thanks': '🚀 Happy to help! The world needs your creative vision - let me know if you need more details!'
+  };
+
+  // Advanced response logic with context awareness
+  function addMessage(text, isUser = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `ai-message ${isUser ? 'ai-user' : 'ai-bot'}`;
+    messageDiv.textContent = text;
+    aiMessages.appendChild(messageDiv);
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+
+  function getAIResponse(question) {
+    const lowerQuestion = question.toLowerCase();
+    let context = '';
+    
+    // Extract context from previous messages
+    const lastMessages = Array.from(aiMessages.querySelectorAll('.ai-user')).slice(-3);
+    lastMessages.forEach(msg => {
+      context += ' ' + msg.textContent.toLowerCase();
+    });
+
+    // Advanced context-aware matching for video editing
+    if ((lowerQuestion.includes('computer') || lowerQuestion.includes('laptop') || lowerQuestion.includes('pc') || lowerQuestion.includes('mac')) && 
+        (lowerQuestion.includes('need') || lowerQuestion.includes('require') || lowerQuestion.includes('spec') || lowerQuestion.includes('buy'))) {
+      return aiResponses['computer'];
+    }
+    
+    if ((lowerQuestion.includes('adobe') || lowerQuestion.includes('premiere') || lowerQuestion.includes('after effects')) && 
+        (lowerQuestion.includes('cost') || lowerQuestion.includes('price') || lowerQuestion.includes('subscription') || lowerQuestion.includes('pay'))) {
+      return aiResponses['software'];
+    }
+    
+    if ((lowerQuestion.includes('free') || lowerQuestion.includes('cheap') || lowerQuestion.includes('alternative') || lowerQuestion.includes('cost')) && 
+        (lowerQuestion.includes('software') || lowerQuestion.includes('app') || lowerQuestion.includes('program'))) {
+      return aiResponses['free software'];
+    }
+    
+    if ((lowerQuestion.includes('money') || lowerQuestion.includes('earn') || lowerQuestion.includes('income') || lowerQuestion.includes('salary')) && 
+        (context.includes('freelance') || context.includes('job') || context.includes('career'))) {
+      return aiResponses['salary'];
+    }
+    
+    if ((lowerQuestion.includes('client') || lowerQuestion.includes('work') || lowerQuestion.includes('job') || lowerQuestion.includes('project')) && 
+        (context.includes('money') || context.includes('earn') || context.includes('freelance'))) {
+      return aiResponses['freelance'];
+    }
+    
+    if ((lowerQuestion.includes('youtube') || lowerQuestion.includes('social media') || lowerQuestion.includes('instagram') || lowerQuestion.includes('tiktok')) && 
+        (context.includes('edit') || context.includes('video') || context.includes('content'))) {
+      return aiResponses['social media'];
+    }
+    
+    if ((lowerQuestion.includes('color') || lowerQuestion.includes('grading') || lowerQuestion.includes('correction') || lowerQuestion.includes('lut')) && 
+        !lowerQuestion.includes('hair')) {
+      return aiResponses['color grading'];
+    }
+    
+    if ((lowerQuestion.includes('motion') || lowerQuestion.includes('animation') || lowerQuestion.includes('graphic') || lowerQuestion.includes('title')) && 
+        !lowerQuestion.includes('sickness')) {
+      return aiResponses['motion graphics'];
+    }
+    
+    if ((lowerQuestion.includes('audio') || lowerQuestion.includes('sound') || lowerQuestion.includes('music') || lowerQuestion.includes('voice')) && 
+        !lowerQuestion.includes('video')) {
+      return aiResponses['audio'];
+    }
+    
+    if ((lowerQuestion.includes('effect') || lowerQuestion.includes('vfx') || lowerQuestion.includes('composite') || lowerQuestion.includes('tracking')) && 
+        context.includes('video')) {
+      return aiResponses['visual effects'];
+    }
+    
+    if ((lowerQuestion.includes('portfolio') || lowerQuestion.includes('showreel') || lowerQuestion.includes('demo')) && 
+        (context.includes('job') || context.includes('client') || context.includes('work'))) {
+      return aiResponses['portfolio'];
+    }
+    
+    if ((lowerQuestion.includes('beginner') || lowerQuestion.includes('start') || lowerQuestion.includes('new') || lowerQuestion.includes('never')) && 
+        (context.includes('edit') || context.includes('video'))) {
+      return aiResponses['beginner'];
+    }
+    
+    if ((lowerQuestion.includes('time') || lowerQuestion.includes('hours') || lowerQuestion.includes('week') || lowerQuestion.includes('schedule')) && 
+        (context.includes('learn') || context.includes('course') || context.includes('study'))) {
+      return aiResponses['time commitment'];
+    }
+    
+    // Standard keyword matching
+    for (const [key, response] of Object.entries(aiResponses)) {
+      if (lowerQuestion.includes(key)) {
+        return response;
+      }
+    }
+    
+    // Smart fallback based on context
+    if (context.includes('software') || lowerQuestion.includes('program') || lowerQuestion.includes('app')) {
+      return "I can provide detailed information about video editing software including Adobe Premiere Pro, After Effects, free alternatives like DaVinci Resolve, costs, and system requirements. What specific software question do you have?";
+    }
+    
+    if (context.includes('career') || lowerQuestion.includes('job') || lowerQuestion.includes('work') || lowerQuestion.includes('money')) {
+      return "I can discuss video editing career paths, income expectations (₦80,000-₦400,000 monthly), freelance opportunities, client acquisition, and portfolio building. What career aspect interests you?";
+    }
+    
+    if (context.includes('computer') || lowerQuestion.includes('spec') || lowerQuestion.includes('hardware') || lowerQuestion.includes('laptop')) {
+      return "I can help with computer specifications for video editing, optimization tips for different budgets, Mac vs Windows recommendations, and performance tuning. What's your specific hardware question?";
+    }
+    
+    return "🎬 I specialize in video editing topics including: software recommendations, computer specifications, career opportunities, project workflows, freelance business, and technical techniques. What specific area would you like me to elaborate on?";
+  }
+
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.trim();
+    if (question) {
+      addMessage(question, true);
+      aiInput.value = '';
+      
+      setTimeout(() => {
+        const response = getAIResponse(question);
+        addMessage(response);
+      }, 600);
+    }
+  });
+
+  aiInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aiSend.click();
+    }
+  });
+
+  // Enhanced animations
+  (function(){
+    function reveal() {
+      document.querySelectorAll('.course-card, .benefit-card, .syllabus-item').forEach(element => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) element.classList.add('visible');
+      });
+    }
+    reveal();
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('resize', reveal);
+  })();
+</script>
+</body>
+</html>
